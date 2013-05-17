@@ -63,7 +63,6 @@ NSMutableArray *filteredList;
              [self.progressBar stopAnimating];
              self.players = playersList;
              filteredList = [NSMutableArray arrayWithArray:playersList];
-             [self.progressBar stopAnimating];
              [self.searchPlayerTableview reloadData];
          }];
     }
@@ -73,15 +72,18 @@ NSMutableArray *filteredList;
         // Filter data in list
         [filteredList removeAllObjects]; //clears the array from all the string objects it might contain from the previous searches
         
-        for (NSString *title in self.players)
+        for(FPPlayerBase * player in self.players)
         {
-            NSRange nameRange = [title rangeOfString:searchText options:NSCaseInsensitiveSearch];
-            if (nameRange.location != NSNotFound)
+            NSRange fullNameRange = [player.Fullname rangeOfString:searchText options:NSCaseInsensitiveSearch];
+            
+            NSRange clubRange = [player.Club rangeOfString:searchText options:NSCaseInsensitiveSearch];
+            
+            if (fullNameRange.location != NSNotFound || clubRange.location != NSNotFound)
             {
-                [filteredList addObject:title];
-                [self.searchPlayerTableview reloadData];
+                [filteredList addObject:player];
             }
         }
+         [self.searchPlayerTableview reloadData];
     }
 }
 
@@ -100,7 +102,7 @@ NSMutableArray *filteredList;
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     // Return the number of rows in the section.
     // Usually the number of items in your array (the one that holds your list)
-    return [self.players count];
+    return filteredList.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -115,20 +117,12 @@ NSMutableArray *filteredList;
     }
     
     // Configure the cell...
-    NSString *title;
     if (isSearching && [filteredList count])
     {
         //If the user is searching, use the list in our filteredList array.
-        title = ((FPPlayerBase*)[filteredList objectAtIndex:indexPath.row]).Fullname;
+        cell.textLabel.text = ((FPPlayerBase*)[filteredList objectAtIndex:indexPath.row]).Fullname;
     }
-    
-    else
-    {
-        title = ((FPPlayerBase*)[self.players objectAtIndex:indexPath.row]).Fullname;
-    }
-    
-    cell.textLabel.text = title;
-    
+  
     return cell;
 }
 
@@ -242,9 +236,11 @@ NSMutableArray *filteredList;
 {
     isSearching = YES;
     letUserSelectRow = NO;
-    
+
+    UIBarButtonItem *button = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(searchBarTextDidEndEditing:)];
+
     //Add the done button.]
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneSearching_Clicked:)];
+    [self.navigationItem setRightBarButtonItem:button animated:YES];
     
 }
 
