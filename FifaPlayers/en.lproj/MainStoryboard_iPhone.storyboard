@@ -12,35 +12,32 @@
                         <rect key="frame" x="0.0" y="20" width="320" height="499"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="JOE-s2-TIB"/>
                             <navigationBar contentMode="scaleToFill" barStyle="blackOpaque" translatesAutoresizingMaskIntoConstraints="NO" id="49Z-tQ-nCD">
                                 <items>
                                     <navigationItem title="Search" id="6v5-Q0-6lc"/>
                                 </items>
                             </navigationBar>
-                            <searchBar contentMode="redraw" barStyle="blackOpaque" translatesAutoresizingMaskIntoConstraints="NO" id="Hsl-YB-qJz">
-                                <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <outlet property="delegate" destination="2" id="UAb-bp-bxk"/>
-                                </connections>
-                            </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="JFh-G3-n4Q">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <activityIndicatorView key="tableFooterView" opaque="NO" contentMode="scaleToFill" style="gray" id="JOE-s2-TIB">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="20"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                </activityIndicatorView>
                             </tableView>
+                            <searchBar contentMode="redraw" barStyle="blackOpaque" translatesAutoresizingMaskIntoConstraints="NO" id="5p3-aH-UVB">
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="5p3-aH-UVB" firstAttribute="bottom" secondItem="JFh-G3-n4Q" secondAttribute="top" type="default" id="3jn-Yc-O6o"/>
                             <constraint firstItem="JFh-G3-n4Q" firstAttribute="bottom" secondItem="16" secondAttribute="bottom" type="default" id="6gF-Um-PFH"/>
-                            <constraint firstItem="Hsl-YB-qJz" firstAttribute="top" secondItem="49Z-tQ-nCD" secondAttribute="bottom" type="default" id="PbA-aV-vBk"/>
-                            <constraint firstItem="Hsl-YB-qJz" firstAttribute="leading" secondItem="16" secondAttribute="leading" type="default" id="ejJ-VY-zjj"/>
+                            <constraint firstItem="5p3-aH-UVB" firstAttribute="leading" secondItem="16" secondAttribute="leading" type="default" id="Cxz-nF-3sZ"/>
+                            <constraint firstItem="JOE-s2-TIB" firstAttribute="top" secondItem="16" secondAttribute="top" constant="240" id="MPc-8i-2pF"/>
+                            <constraint firstItem="5p3-aH-UVB" firstAttribute="top" secondItem="49Z-tQ-nCD" secondAttribute="bottom" type="default" id="YUc-6Y-gPf"/>
+                            <constraint firstItem="JOE-s2-TIB" firstAttribute="trailing" secondItem="16" secondAttribute="trailing" type="default" id="bjo-5i-4b5"/>
+                            <constraint firstItem="5p3-aH-UVB" firstAttribute="trailing" secondItem="16" secondAttribute="trailing" type="default" id="dAT-dO-g6l"/>
                             <constraint firstItem="49Z-tQ-nCD" firstAttribute="trailing" secondItem="16" secondAttribute="trailing" type="default" id="erE-1O-3hh"/>
                             <constraint firstItem="49Z-tQ-nCD" firstAttribute="leading" secondItem="16" secondAttribute="leading" type="default" id="hjD-kZ-dzA"/>
                             <constraint firstItem="49Z-tQ-nCD" firstAttribute="top" secondItem="16" secondAttribute="top" type="default" id="kVo-aW-f1H"/>
-                            <constraint firstItem="JFh-G3-n4Q" firstAttribute="top" secondItem="Hsl-YB-qJz" secondAttribute="bottom" type="default" id="sUx-ek-6rb"/>
-                            <constraint firstItem="Hsl-YB-qJz" firstAttribute="trailing" secondItem="16" secondAttribute="trailing" type="default" id="u53-qo-Sgh"/>
+                            <constraint firstItem="JOE-s2-TIB" firstAttribute="leading" secondItem="16" secondAttribute="leading" type="default" id="tpl-tO-t2x"/>
                             <constraint firstItem="JFh-G3-n4Q" firstAttribute="leading" secondItem="16" secondAttribute="leading" type="default" id="x9a-eV-dry"/>
                             <constraint firstItem="JFh-G3-n4Q" firstAttribute="trailing" secondItem="16" secondAttribute="trailing" type="default" id="zZ3-S0-m5c"/>
                         </constraints>
@@ -48,18 +45,18 @@
                     <tabBarItem key="tabBarItem" title="Search" image="Search.png" id="7"/>
                     <connections>
                         <outlet property="progressBar" destination="JOE-s2-TIB" id="7vg-AA-53Q"/>
-                        <outlet property="searchDisplayController" destination="zbx-nn-IAW" id="rbm-LA-xO9"/>
+                        <outlet property="searchBar" destination="5p3-aH-UVB" id="GbZ-tN-5fq"/>
+                        <outlet property="searchDisplayController" destination="tHF-hM-CQx" id="5vQ-gt-ndr"/>
                         <outlet property="searchPlayerTableview" destination="JFh-G3-n4Q" id="rXx-Ce-oae"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="10" sceneMemberID="firstResponder"/>
-                <searchDisplayController id="zbx-nn-IAW">
+                <searchDisplayController id="tHF-hM-CQx">
                     <connections>
-                        <outlet property="delegate" destination="2" id="otd-vU-h0T"/>
-                        <outlet property="searchBar" destination="Hsl-YB-qJz" id="H7K-Td-49r"/>
-                        <outlet property="searchContentsController" destination="2" id="4ep-xB-fWT"/>
-                        <outlet property="searchResultsDataSource" destination="2" id="c7g-gm-bYT"/>
-                        <outlet property="searchResultsDelegate" destination="2" id="WXD-t4-QrL"/>
+                        <outlet property="delegate" destination="2" id="p2v-kC-dVU"/>
+                        <outlet property="searchContentsController" destination="2" id="h0K-6V-pAK"/>
+                        <outlet property="searchResultsDataSource" destination="2" id="a5m-pG-Jhb"/>
+                        <outlet property="searchResultsDelegate" destination="2" id="Qfy-Gk-XXj"/>
                     </connections>
                 </searchDisplayController>
             </objects>
@@ -196,6 +193,28 @@
         <image name="Search.png" width="32" height="32"/>
         <image name="Settings.png" width="32" height="32"/>
     </resources>
+    <classes>
+        <class className="FPFavoritesViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FPFavoritesViewController.h"/>
+        </class>
+        <class className="FPFilterViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FPFilterViewController.h"/>
+        </class>
+        <class className="FPSearchViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FPSearchViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="progressBar" candidateClass="UIActivityIndicatorView"/>
+                <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
+                <relationship kind="outlet" name="searchPlayerTableview" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="FPSettingsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FPSettingsViewController.h"/>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

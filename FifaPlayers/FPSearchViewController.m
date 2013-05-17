@@ -18,29 +18,71 @@
 
 @implementation FPSearchViewController
 
+// Member variables
+bool isLocalFilter;
+bool isSearching;
+bool letUserSelectRow = YES;
+NSMutableArray *filteredList;
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-
     
-    FPDataProvider *provider = [[FPDataProvider alloc]init];
-    [provider SearchPlayer:@"" withResponseMethod:^(NSMutableArray *playersList)
-     {
-         [self.progressBar stopAnimating];
-         self.players = playersList;
-         [self.searchPlayerTableview reloadData];
-     }];
-    
-    self.progressBar.hidesWhenStopped = YES;
-    [self.progressBar startAnimating];
     self.searchPlayerTableview.dataSource = self;
     self.searchPlayerTableview.delegate = self;
+    self.searchBar.delegate = self;
+    
+    isSearching = NO;
+    filteredList = [[NSMutableArray alloc]init];
+    self.progressBar.hidesWhenStopped = YES;
+    self.progressBar.hidden = YES;
+    self.searchBar.autocorrectionType = UITextAutocorrectionTypeNo;
 }
 
--(void) EndSearchPlayer:(NSArray *)playerList
+-(void)filterListForSearchText:(NSString *)searchText
 {
-    self.players = playerList;
+    self.progressBar.hidden = false;
+   	[self.progressBar startAnimating];
+    
+    if (searchText.length < 3)
+    {
+        // reset local filter
+        isLocalFilter = false;
+    }
+    
+    else if (searchText.length == 3 && isLocalFilter == false)
+    {
+        isLocalFilter = true;
+        
+        // Load data from webserver
+        FPDataProvider *provider = [[FPDataProvider alloc]init];
+        [provider SearchPlayer:searchText withResponseMethod:^(NSMutableArray *playersList)
+         {
+             // update data
+             [self.progressBar stopAnimating];
+             self.players = playersList;
+             filteredList = [NSMutableArray arrayWithArray:playersList];
+             [self.progressBar stopAnimating];
+             [self.searchPlayerTableview reloadData];
+         }];
+    }
+    
+    else
+    {
+        // Filter data in list
+        [filteredList removeAllObjects]; //clears the array from all the string objects it might contain from the previous searches
+        
+        for (NSString *title in self.players)
+        {
+            NSRange nameRange = [title rangeOfString:searchText options:NSCaseInsensitiveSearch];
+            if (nameRange.location != NSNotFound)
+            {
+                [filteredList addObject:title];
+                [self.searchPlayerTableview reloadData];
+            }
+        }
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -71,11 +113,33 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    // Configure the cell... setting the text of our cell's label
-    cell.textLabel.text = ((FPPlayerBase*)[self.players objectAtIndex:indexPath.row]).Fullname;
+    
+    // Configure the cell...
+    NSString *title;
+    if (isSearching && [filteredList count])
+    {
+        //If the user is searching, use the list in our filteredList array.
+        title = ((FPPlayerBase*)[filteredList objectAtIndex:indexPath.row]).Fullname;
+    }
+    
+    else
+    {
+        title = ((FPPlayerBase*)[self.players objectAtIndex:indexPath.row]).Fullname;
+    }
+    
+    cell.textLabel.text = title;
+    
     return cell;
 }
 
+-(NSIndexPath*)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+
+    if(letUserSelectRow)
+        return indexPath;
+    else
+        return nil;
+}
 
  // Override to support conditional editing of the table view.
  - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -86,14 +150,15 @@
 
 
  // Override to support editing the table view.
- - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
- if (editingStyle == UITableViewCellEditingStyleDelete) {
- // Delete the row from the data source
- [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
- }
- else if (editingStyle == UITableViewCellEditingStyleInsert) {
- // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
- }
+ - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+    // Delete the row from the data source
+     [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    }
+        else if (editingStyle == UITableViewCellEditingStyleInsert) {
+     // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+    }
  }
  
 
@@ -125,6 +190,67 @@
      // Pass the selected object to the new view controller.
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
+}
+
+#pragma mark - UISearchControllerDelegate
+
+-(void)searchBar:(UISearchBar *)searchBar selectedScopeButtonIndexDidChange:(NSInteger)selectedScope
+{
+    
+}
+
+-(void)doneSearching_Clicked
+{
+    
+}
+
+-(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+{   
+    if (searchText.length > 0)
+    {
+        [self filterListForSearchText:searchText];
+    }
+    else
+    {
+        isSearching = NO;
+        letUserSelectRow = NO;
+        self.searchPlayerTableview = NO;
+    }
+}
+
+-(void)searchBarBookmarkButtonClicked:(UISearchBar *)searchBar
+{
+
+}
+
+-(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
+{
+
+}
+
+-(void)searchBarResultsListButtonClicked:(UISearchBar *)searchBar
+{
+
+}
+
+-(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+
+}
+
+-(void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
+{
+    isSearching = YES;
+    letUserSelectRow = NO;
+    
+    //Add the done button.]
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneSearching_Clicked:)];
+    
+}
+
+-(void)searchBarTextDidEndEditing:(UISearchBar *)searchBar
+{
+    
 }
 
 @end

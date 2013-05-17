@@ -17,7 +17,8 @@ NSMutableArray *_responseData;
 
 -(void) SearchPlayer:(NSString *) searchString withResponseMethod:(void (^)(NSMutableArray *players)) responseMethod
 {
-    [self GetPlayersByUrl:@"http://fifa.dzim.ch/api/players?f=1=1" withResponseMethod:responseMethod];
+    NSString *url = [[NSString alloc] initWithFormat:@"http://fifa.dzim.ch/api/players?q=%@", searchString];
+    [self GetPlayersByUrl:url withResponseMethod:responseMethod];
     
     
     //return [[NSArray alloc] initWithObjects:@"Lionel Messi", @"Cristiano Ronaldo", @"Franck Ribéry", @"Marco Reus", nil];

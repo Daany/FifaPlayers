@@ -132,8 +132,8 @@
 		F69CF7D417450697005AC999 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				F6B7DC87173D82EB00BF5C65 /* FPSearchViewController.h */,
 				F6B7DC88173D82EB00BF5C65 /* FPSearchViewController.m */,
+				F6B7DC87173D82EB00BF5C65 /* FPSearchViewController.h */,
 				F6B7DCA0173D91FD00BF5C65 /* Search.png */,
 				F6B7DCA1173D91FD00BF5C65 /* Search@2x.png */,
 				F6B7DC8E173D82EB00BF5C65 /* FPFilterViewController.h */,
