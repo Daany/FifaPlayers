@@ -10,7 +10,7 @@
 
 @interface FPPlayerBase : NSObject
 
-@property (nonatomic) guid_t *PlayerId;
+@property (nonatomic) NSString *PlayerId;
 @property (nonatomic) NSString *Fullname;
 @property (nonatomic) NSString *Club;
 

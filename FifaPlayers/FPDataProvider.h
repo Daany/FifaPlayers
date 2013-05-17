@@ -10,7 +10,7 @@
 
 @interface FPDataProvider : NSObject <NSURLConnectionDelegate>
 
--(void) SearchPlayer:(NSString *) searchString withResponseMethod:(SEL*)responseMethod;
+-(void) SearchPlayer:(NSString *) searchString withResponseMethod:(void (^)(NSMutableArray *players)) responseMethod;
 -(NSArray*) GetPlayersByUrl:(NSString*) url;
 
 @property (nonatomic, strong) NSMutableData *responseData;

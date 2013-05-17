@@ -10,6 +10,8 @@
 
 @interface FPSearchViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *progressBar;
+
 @property (weak, nonatomic) IBOutlet UITableView *searchPlayerTableview;
 
 @end

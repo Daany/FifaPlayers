@@ -8,6 +8,8 @@
 
 #import "FPSearchViewController.h"
 #import "FPDataProvider.h"
+#import "FPPlayerBase.h"
+
 @interface FPSearchViewController()
 
 @property (nonatomic, strong) NSArray *players;
@@ -20,19 +22,23 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    
-    SEL endSearchPlayer = @selector(EndSearchPlayer:);
-    
+
     FPDataProvider *provider = [[FPDataProvider alloc]init];
-    [provider SearchPlayer:@"" withResponseMethod:endSearchPlayer];
+    [provider SearchPlayer:@"" withResponseMethod:^(NSMutableArray *playersList)
+     {
+         [self.progressBar stopAnimating];
+         self.players = playersList;
+     }];
     
+    
+    [self.progressBar startAnimating];
     self.searchPlayerTableview.dataSource = self;
     self.searchPlayerTableview.delegate = self;
 }
 
 -(void) EndSearchPlayer:(NSArray *)playerList
 {
-    
+    self.players = playerList;
 }
 
 - (void)didReceiveMemoryWarning
@@ -64,7 +70,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     // Configure the cell... setting the text of our cell's label
-    cell.textLabel.text = [self.players objectAtIndex:indexPath.row];
+    cell.textLabel.text = ((FPPlayerBase*)[self.players objectAtIndex:indexPath.row]).Fullname;
     return cell;
 }
 

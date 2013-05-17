@@ -14,110 +14,67 @@
 @implementation FPDataProvider
 
 NSMutableArray *_responseData;
-SEL *_responseMethod;
 
--(void) SearchPlayer:(NSString *) searchString withResponseMethod:(SEL*)responseMethod
+-(void) SearchPlayer:(NSString *) searchString withResponseMethod:(void (^)(NSMutableArray *players)) responseMethod
 {
-    [self GetPlayersByUrl:@"http://fifa.dzim.ch/api/players?f=1=1" withResponseMethod:responseMethod];
+    [self GetPlayersByUrl:@"http://fifa.dzim.ch/api/players?q=Lionel" withResponseMethod:responseMethod];
     
     
     //return [[NSArray alloc] initWithObjects:@"Lionel Messi", @"Cristiano Ronaldo", @"Franck Ribéry", @"Marco Reus", nil];
 }
 
 
--(void) GetPlayersByUrl:(NSString*) strUrl withResponseMethod:(SEL*)responseMethod
+-(void) GetPlayersByUrl:(NSString*) strUrl withResponseMethod:(void (^)(NSMutableArray *players))responseMethod
 {
+    
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:strUrl]];
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON)
     {
-        NSDictionary *jsonDict = (NSDictionary *) JSON;
-        NSArray *list = [jsonDict objectForKey:@""];
+        NSMutableArray *players = [[NSMutableArray alloc]init];
+        
+        for(int i = 0; i < [JSON count]; i++)
+        {
+            FPPlayerBase *player = [[FPPlayerBase alloc] init];
+            
+            id playerJson = [JSON objectAtIndex:i];
+            player.Fullname = [playerJson objectForKey:@"Fullname"];
+            player.PlayerId = [playerJson objectForKey:@"PlayerId"];
+            player.Club = [playerJson objectForKey:@"Club"];
+            player.Position = [playerJson objectForKey:@"Position"];
+            player.Potential = [[playerJson objectForKey:@"Potential"] intValue];
+            player.TotalSkill = [[playerJson objectForKey:@"TotalSkill"] intValue];
+            player.BirthDate = [self convertToDate:[playerJson objectForKey:@"BirthDate"]];
+            
+            [players addObject:player];
+        }
+        
+        responseMethod(players);
+        //for (NSString *key in jsonDict) {
+            
+        //    id obj = [jsonDict objectForKey:key];
+            
+            //id value = [jsonDict objectForKey:key];
+            // do stuff
+        //}
     }
                                          
     failure:^(NSURLRequest *request, NSHTTPURLResponse *response,
     NSError *error, id JSON) { NSLog(@"Request Failure Because %@",[error userInfo]); }];
     
     [operation start];
-    
-    responseMethod = responseMethod;
-    self.responseData = [NSMutableData data];
         
 }
 
-- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
-    NSLog(@"didReceiveResponse");
-    [self.responseData setLength:0];
-}
-
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
-    [self.responseData appendData:data];
-}
-
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
-    NSLog(@"didFailWithError");
-    NSLog([NSString stringWithFormat:@"Connection failed: %@", [error description]]);
-}
-
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
-    NSLog(@"connectionDidFinishLoading");
-    NSLog(@"Succeeded! Received %d bytes of data",[self.responseData length]);
+-(NSDate * )convertToDate:(NSString *) str
+{
+    // Convert string to date object
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
     
-    // convert to JSON
-    NSError *myError = nil;
+    [dateFormat setDateFormat:@"EE, d LLLL yyyy HH:mm:ss Z"];
     
-    if (self.responseData == nil)
-    {
-        NSLog(@"ResponseData is null!");
-    }
-    else
-    {
+    NSDate *date = [dateFormat dateFromString:str];
         
-        for(int i = 0; i < self.responseData.length; i++)
-        {
-            NSLog(@"entry");
-        }
-        
-        //        NSDictionary *res = [NSJSONSerialization JSONObjectWithData:self.responseData options:NSJSon error:&myError];
-        //
-        //        //self performSelector:_responseMethod];
-        //        //[self performSelector:_responseMethod:withArray[[NSArray alloc]initWithObjects:@"Test", @"Test2", nil]];
-        //
-        //        // show all values
-        //        for(id key in res) {
-        //
-        //            //ToDo: Parse JSON to object
-        //            NSLog([[NSString alloc]initWithFormat:@"%@", key]);
-        //
-        //        }
-        //
-        //        // extract specific value...
-        //        NSArray *results = [res objectForKey:@"results"];
-        //
-        //        for (NSDictionary *result in results) {
-        //            NSString *icon = [result objectForKey:@"icon"];
-        //            NSLog(@"icon: %@", icon);
-        //        }
-        
-        // extract specific value...
-        //NSArray *results = [res objectForKey:@"results"];
-        
-        //for (NSDictionary *result in results) {
-        //    NSString *icon = [result objectForKey:@"icon"];
-        //    NSLog(@"icon: %@", icon);
-        //}
-        
-        [self performSelector:@selector(_responseMethod:) withObject:[[NSArray alloc]initWithObjects:@"Test", @"Test2", nil]];
-    }
-}
-
--(FPPlayerBase *)mapObjectsForClass1From:(NSDictionary *)dict {
-    FPPlayerBase *object1 = [[FPPlayerBase alloc] init];
-    
-    object1.Fullname = [[dict valueForKey:@"Fullname"] stringValue];
-    object1.BirthDate = [[dict valueForKey:@"Birthdate"] date];
-    object1.Club = [[dict valueForKey:@"Club"] stringValue];
-    
-    return object1;
+    return date;
 }
 
 @end
