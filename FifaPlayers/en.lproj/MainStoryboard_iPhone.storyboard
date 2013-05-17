@@ -44,6 +44,7 @@
                     <tabBarItem key="tabBarItem" title="Search" image="Search.png" id="7"/>
                     <connections>
                         <outlet property="searchDisplayController" destination="zbx-nn-IAW" id="rbm-LA-xO9"/>
+                        <outlet property="searchPlayerTableview" destination="JFh-G3-n4Q" id="rXx-Ce-oae"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="10" sceneMemberID="firstResponder"/>
@@ -190,23 +191,6 @@
         <image name="Search.png" width="32" height="32"/>
         <image name="Settings.png" width="32" height="32"/>
     </resources>
-    <classes>
-        <class className="FPFavoritesViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FPFavoritesViewController.h"/>
-        </class>
-        <class className="FPFilterViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FPFilterViewController.h"/>
-        </class>
-        <class className="FPSearchViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FPSearchViewController.h"/>
-        </class>
-        <class className="FPSettingsViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FPSettingsViewController.h"/>
-        </class>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
