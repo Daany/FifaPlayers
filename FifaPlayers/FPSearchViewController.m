@@ -23,14 +23,16 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
 
+    
     FPDataProvider *provider = [[FPDataProvider alloc]init];
     [provider SearchPlayer:@"" withResponseMethod:^(NSMutableArray *playersList)
      {
          [self.progressBar stopAnimating];
          self.players = playersList;
+         [self.searchPlayerTableview reloadData];
      }];
     
-    
+    self.progressBar.hidesWhenStopped = YES;
     [self.progressBar startAnimating];
     self.searchPlayerTableview.dataSource = self;
     self.searchPlayerTableview.delegate = self;
