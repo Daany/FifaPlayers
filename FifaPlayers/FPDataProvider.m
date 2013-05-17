@@ -9,6 +9,7 @@
 #import "FPDataProvider.h"
 #import "FPPlayer.h"
 #import "objc/runtime.h"
+#import "AFNetworking.h"
 
 @implementation FPDataProvider
 
@@ -24,13 +25,22 @@ SEL *_responseMethod;
 }
 
 
--(void) GetPlayersByUrl:(NSString*) url withResponseMethod:(SEL*)responseMethod
+-(void) GetPlayersByUrl:(NSString*) strUrl withResponseMethod:(SEL*)responseMethod
 {
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:strUrl]];
+    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON)
+    {
+        NSDictionary *jsonDict = (NSDictionary *) JSON;
+        NSArray *list = [jsonDict objectForKey:@""];
+    }
+                                         
+    failure:^(NSURLRequest *request, NSHTTPURLResponse *response,
+    NSError *error, id JSON) { NSLog(@"Request Failure Because %@",[error userInfo]); }];
+    
+    [operation start];
+    
     responseMethod = responseMethod;
     self.responseData = [NSMutableData data];
-
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
-    [[NSURLConnection alloc] initWithRequest:request delegate:self];
         
 }
 
@@ -61,26 +71,40 @@ SEL *_responseMethod;
     }
     else
     {
-        NSDictionary *res = [NSJSONSerialization JSONObjectWithData:self.responseData options:NSJSon error:&myError];
         
-        //self performSelector:_responseMethod];
-        //[self performSelector:_responseMethod:withArray[[NSArray alloc]initWithObjects:@"Test", @"Test2", nil]];
-        
-        // show all values
-        for(id key in res) {            
-            
-            //ToDo: Parse JSON to object
-            NSLog([[NSString alloc]initWithFormat:@"%@", key]);
-            
+        for(int i = 0; i < self.responseData.length; i++)
+        {
+            NSLog(@"entry");
         }
+        
+        //        NSDictionary *res = [NSJSONSerialization JSONObjectWithData:self.responseData options:NSJSon error:&myError];
+        //
+        //        //self performSelector:_responseMethod];
+        //        //[self performSelector:_responseMethod:withArray[[NSArray alloc]initWithObjects:@"Test", @"Test2", nil]];
+        //
+        //        // show all values
+        //        for(id key in res) {
+        //
+        //            //ToDo: Parse JSON to object
+        //            NSLog([[NSString alloc]initWithFormat:@"%@", key]);
+        //
+        //        }
+        //
+        //        // extract specific value...
+        //        NSArray *results = [res objectForKey:@"results"];
+        //
+        //        for (NSDictionary *result in results) {
+        //            NSString *icon = [result objectForKey:@"icon"];
+        //            NSLog(@"icon: %@", icon);
+        //        }
         
         // extract specific value...
-        NSArray *results = [res objectForKey:@"results"];
+        //NSArray *results = [res objectForKey:@"results"];
         
-        for (NSDictionary *result in results) {
-            NSString *icon = [result objectForKey:@"icon"];
-            NSLog(@"icon: %@", icon);
-        }
+        //for (NSDictionary *result in results) {
+        //    NSString *icon = [result objectForKey:@"icon"];
+        //    NSLog(@"icon: %@", icon);
+        //}
         
         [self performSelector:@selector(_responseMethod:) withObject:[[NSArray alloc]initWithObjects:@"Test", @"Test2", nil]];
     }
