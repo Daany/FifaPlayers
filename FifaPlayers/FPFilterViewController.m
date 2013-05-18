@@ -14,6 +14,8 @@
 #import "FPFilterPage2Controller.h"
 #import "FPFilterPage3Controller.h"
 #import "FPFilterPage4Controller.h"
+#import "FPFilterPage5Controller.h"
+#import "FPFilterPage6Controller.h"
 
 @interface FPFilterViewController ()
 
@@ -38,6 +40,9 @@
     [self.viewControllers addObject:[[FPFilterPage2Controller alloc] initWithFrame:CGRectMake(0, 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height)]];
     [self.viewControllers addObject:[[FPFilterPage3Controller alloc] initWithFrame:CGRectMake(0, 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height)]];
     [self.viewControllers addObject:[[FPFilterPage4Controller alloc] initWithFrame:CGRectMake(0, 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height)]];
+    [self.viewControllers addObject:[[FPFilterPage5Controller alloc] initWithFrame:CGRectMake(0, 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height)]];
+    [self.viewControllers addObject:[[FPFilterPage6Controller alloc] initWithFrame:CGRectMake(0, 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height)]];
+
 
     self.numberOfPages = self.viewControllers.count;
 

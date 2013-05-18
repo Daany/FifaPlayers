@@ -7,10 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C22814933741B67C2A1EF62 /* FPFilterPage6Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C2289D992E7AD4AB6DFFC7D /* FPFilterPage6Controller.m */; };
 		2C2281815EE9FD61883C3E22 /* NSString+URLEncode.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C2285791E8F2F676A37D07A /* NSString+URLEncode.m */; };
 		2C228364D10D73DB0AB19A23 /* FPResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C2283CE7773323B1531DB63 /* FPResultViewController.m */; };
 		2C22862334CF06703B152EE2 /* FPFilterPage3Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C228147089359BEFC3DE3DE /* FPFilterPage3Controller.m */; };
 		2C22866AB9824CD004124C8B /* FPFilterPage2Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C22877DC1D70EDC48BC8923 /* FPFilterPage2Controller.m */; };
+		2C22886933C06506C800E692 /* FPFilterPage5Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C2285649AEE24619FCF0EE5 /* FPFilterPage5Controller.m */; };
 		2C2289ED4E6F33EFAC80AE54 /* FPFilterPage4Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C2285AF5C43CA8F9B098CB8 /* FPFilterPage4Controller.m */; };
 		2C228C471F4D317CECB63205 /* FPFilterPage1Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C2286206E38C446FB4D8616 /* FPFilterPage1Controller.m */; };
 		2C228FC6F396E5C192FA3FA5 /* BaseFilterController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C228656FEC7B891AA9F5958 /* BaseFilterController.m */; };
@@ -54,17 +56,21 @@
 
 /* Begin PBXFileReference section */
 		2C228147089359BEFC3DE3DE /* FPFilterPage3Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FPFilterPage3Controller.m; sourceTree = "<group>"; };
+		2C228167213D1CA642CA5667 /* FPFilterPage5Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FPFilterPage5Controller.h; sourceTree = "<group>"; };
 		2C2281E1E2E824ECA746BF79 /* FPResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FPResultViewController.h; sourceTree = "<group>"; };
 		2C2283681F64ABC53C221D71 /* NSString+URLEncode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+URLEncode.h"; sourceTree = "<group>"; };
 		2C2283CE7773323B1531DB63 /* FPResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FPResultViewController.m; sourceTree = "<group>"; };
 		2C2284FA585B634FD990EC71 /* FPFilterPage3Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FPFilterPage3Controller.h; sourceTree = "<group>"; };
+		2C2285649AEE24619FCF0EE5 /* FPFilterPage5Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FPFilterPage5Controller.m; sourceTree = "<group>"; };
 		2C2285791E8F2F676A37D07A /* NSString+URLEncode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+URLEncode.m"; sourceTree = "<group>"; };
 		2C2285AF5C43CA8F9B098CB8 /* FPFilterPage4Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FPFilterPage4Controller.m; sourceTree = "<group>"; };
 		2C2286206E38C446FB4D8616 /* FPFilterPage1Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FPFilterPage1Controller.m; sourceTree = "<group>"; };
 		2C228656FEC7B891AA9F5958 /* BaseFilterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseFilterController.m; sourceTree = "<group>"; };
 		2C22877DC1D70EDC48BC8923 /* FPFilterPage2Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FPFilterPage2Controller.m; sourceTree = "<group>"; };
+		2C2289D992E7AD4AB6DFFC7D /* FPFilterPage6Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FPFilterPage6Controller.m; sourceTree = "<group>"; };
 		2C228A0C90CD294CC571D71F /* FPFilterPage1Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FPFilterPage1Controller.h; sourceTree = "<group>"; };
 		2C228A99FE66CC077EFB9E63 /* FPFilterPage4Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FPFilterPage4Controller.h; sourceTree = "<group>"; };
+		2C228B5BD4CBBD1F66540376 /* FPFilterPage6Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FPFilterPage6Controller.h; sourceTree = "<group>"; };
 		2C228C7BC13AB0C741A57890 /* BaseFilterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseFilterController.h; sourceTree = "<group>"; };
 		2C228D6070CA89663A21A11C /* FPFilterPage2Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FPFilterPage2Controller.h; sourceTree = "<group>"; };
 		F69CF7D5174506F9005AC999 /* FPDataProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FPDataProvider.h; sourceTree = "<group>"; };
@@ -163,6 +169,10 @@
 				2C2284FA585B634FD990EC71 /* FPFilterPage3Controller.h */,
 				2C2285AF5C43CA8F9B098CB8 /* FPFilterPage4Controller.m */,
 				2C228A99FE66CC077EFB9E63 /* FPFilterPage4Controller.h */,
+				2C2285649AEE24619FCF0EE5 /* FPFilterPage5Controller.m */,
+				2C228167213D1CA642CA5667 /* FPFilterPage5Controller.h */,
+				2C2289D992E7AD4AB6DFFC7D /* FPFilterPage6Controller.m */,
+				2C228B5BD4CBBD1F66540376 /* FPFilterPage6Controller.h */,
 			);
 			name = FilterControllers;
 			sourceTree = "<group>";
@@ -410,6 +420,8 @@
 				2C22866AB9824CD004124C8B /* FPFilterPage2Controller.m in Sources */,
 				2C22862334CF06703B152EE2 /* FPFilterPage3Controller.m in Sources */,
 				2C2289ED4E6F33EFAC80AE54 /* FPFilterPage4Controller.m in Sources */,
+				2C22886933C06506C800E692 /* FPFilterPage5Controller.m in Sources */,
+				2C22814933741B67C2A1EF62 /* FPFilterPage6Controller.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
