@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FPSearchViewController : UIViewController<UITableViewDataSource,UITableViewDelegate, UISearchBarDelegate>
+@interface FPSearchViewController : UIViewController<UITableViewDataSource,UITableViewDelegate, UISearchBarDelegate, UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *progressBar;
 

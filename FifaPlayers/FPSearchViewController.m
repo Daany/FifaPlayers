@@ -48,7 +48,22 @@ NSMutableArray *filteredList;
     self.progressBar.hidesWhenStopped = YES;
     self.progressBar.hidden = YES;
     self.searchBar.autocorrectionType = UITextAutocorrectionTypeNo;
+    
+    // set returnkey to done-button
+    for(UIView *subView in self.searchBar.subviews) {
+        if([subView conformsToProtocol:@protocol(UITextInputTraits)]) {
+            UITextField *textField = (UITextField *)subView ;
+            textField.returnKeyType = UIReturnKeyDone;
+            textField.delegate = self;
+        }
+    }
 }
+
+-(void)search
+{
+
+}
+
 
 - (void)setPLayerList:(NSMutableArray *)list
 {
@@ -270,11 +285,12 @@ NSMutableArray *filteredList;
 -(void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
 {
     isSearching = YES;
-    UIBarButtonItem *button = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneButtonClicked:)];
-    
-    //Add the done button.]
-    [self.navigationItem setRightBarButtonItem:button animated:YES];
-    
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return NO;
 }
 
 -(void)doneButtonClicked:(id)sender
