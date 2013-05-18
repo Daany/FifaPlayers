@@ -48,6 +48,10 @@
 
     [self loadScrollViewWithPage:0];
     [self loadScrollViewWithPage:1];
+
+
+    UIBarButtonItem *button = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(search:)];
+    [self.navigationItem setRightBarButtonItem:button animated:YES];
 }
 
 - (void)loadScrollViewWithPage:(int)page {
@@ -92,17 +96,40 @@
 
 - (IBAction)search:(id)sender
 {
+    if(self.requestRunning) return;
+    self.requestRunning = YES;
+
     __block NSString *fullSearchString = @"1 = 1";
+    __block NSString *fullPositionString = @"";
 
     [self.viewControllers enumerateObjectsUsingBlock:^(BaseFilterController *obj, NSUInteger idx, BOOL *stop)
     {
-        NSString *partSearchString = [obj getSearchString];
-        fullSearchString = [fullSearchString stringByAppendingString:partSearchString];
+        fullSearchString = [fullSearchString stringByAppendingString:[obj getSearchString]];
+        fullPositionString = [fullPositionString stringByAppendingString:[obj getPositionString]];
     }];
 
-    [self.provider FilterPlayers:fullSearchString withResponseMethod:^(NSMutableArray *array)
+    if([fullPositionString isEqualToString:@""])
     {
+        fullPositionString = nil;
+    }
+
+    [self.provider FilterPlayers:fullSearchString andPositions:fullPositionString withResponseMethod:^(NSMutableArray *array)
+    {
+        self.requestRunning = false;
+        self.foundPlayers = array;
         [self performSegueWithIdentifier:@"Result" sender:self];
     }];
 }
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if([segue.identifier isEqualToString:@"Result"])
+    {
+        FPSearchViewController *controller = segue.destinationViewController;
+        [controller setPLayerList:self.foundPlayers];
+        [controller disableUpdates];
+    }
+}
+
+
 @end

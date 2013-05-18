@@ -12,7 +12,7 @@
 
 -(void) SearchPlayer:(NSString *) searchString withResponseMethod:(void (^)(NSMutableArray *players)) responseMethod;
 
-- (void)FilterPlayers:(NSString *)filter withResponseMethod:(void (^)(NSMutableArray *))responseMethod;
+- (void)FilterPlayers:(NSString *)filter andPositions:(NSString *)positions withResponseMethod:(void (^)(NSMutableArray *))responseMethod;
 
 -(NSArray*) GetPlayersByUrl:(NSString*) url;
 

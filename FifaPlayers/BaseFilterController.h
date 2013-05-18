@@ -25,4 +25,6 @@
 
 - (NSString *)getSearchString;
 
+- (NSString *)getPositionString;
+
 @end

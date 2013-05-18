@@ -18,4 +18,6 @@
 @property(nonatomic, strong) UITextField *minAge;
 @property(nonatomic, strong) UITextField *maxAge;
 
+@property(nonatomic, strong) UISegmentedControl *position;
+@property(nonatomic, strong) UITextField *maxPotential;
 @end

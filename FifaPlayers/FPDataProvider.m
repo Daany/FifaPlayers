@@ -24,10 +24,19 @@ NSMutableArray *_responseData;
     //return [[NSArray alloc] initWithObjects:@"Lionel Messi", @"Cristiano Ronaldo", @"Franck Ribéry", @"Marco Reus", nil];
 }
 
--(void) FilterPlayers:(NSString *)filter withResponseMethod:(void (^)(NSMutableArray *players)) responseMethod
+-(void) FilterPlayers:(NSString *)filter andPositions:(NSString *)positions withResponseMethod:(void (^)(NSMutableArray *players)) responseMethod
 {
     filter = [filter urlEncodeUsingEncoding:NSUTF8StringEncoding];
-    NSString *url = [[NSString alloc] initWithFormat:@"http://fifa.dzim.ch/api/players?f=%@", filter];
+    NSString *url = @"";
+    if(positions != nil)
+    {
+        positions = [positions urlEncodeUsingEncoding:NSUTF8StringEncoding];
+        url = [[NSString alloc] initWithFormat:@"http://fifa.dzim.ch/api/players?f=%@&p=%@", filter, positions];
+    }
+    else
+    {
+        url = [[NSString alloc] initWithFormat:@"http://fifa.dzim.ch/api/players?f=%@", filter];
+    }
     [self GetPlayersByUrl:url withResponseMethod:responseMethod];
 }
 

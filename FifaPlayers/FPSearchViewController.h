@@ -16,4 +16,9 @@
 
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 
+- (void)setPLayerList:(NSMutableArray *)list;
+
+- (void)disableUpdates;
+
+- (void)doneButtonClicked;
 @end

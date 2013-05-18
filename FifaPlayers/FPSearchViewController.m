@@ -23,6 +23,7 @@
 bool isLocalFilter;
 bool isSearching;
 bool onWebRequest;
+bool makeUpdates = YES;
 NSMutableArray *filteredList;
 
 - (void)viewDidLoad
@@ -35,10 +36,29 @@ NSMutableArray *filteredList;
     self.searchBar.delegate = self;
     
     isSearching = NO;
-    filteredList = [[NSMutableArray alloc]init];
+    if(filteredList == NULL)
+    {
+        filteredList = [[NSMutableArray alloc]init];
+    }
+    else
+    {
+
+        [self.searchPlayerTableview reloadData];
+    }
     self.progressBar.hidesWhenStopped = YES;
     self.progressBar.hidden = YES;
     self.searchBar.autocorrectionType = UITextAutocorrectionTypeNo;
+}
+
+- (void)setPLayerList:(NSMutableArray *)list
+{
+    self.players = [NSArray arrayWithArray:list];
+    filteredList = list;
+}
+
+- (void)disableUpdates
+{
+    makeUpdates = NO;
 }
 
 -(void)filterListForSearchText:(NSString *)searchText
@@ -46,7 +66,7 @@ NSMutableArray *filteredList;
     self.progressBar.hidden = false;
    	[self.progressBar startAnimating];
     
-    if (searchText.length < 3)
+    if (searchText.length < 3 && makeUpdates)
     {
         // reset local filter
         isLocalFilter = false;
@@ -56,7 +76,7 @@ NSMutableArray *filteredList;
         [self.searchPlayerTableview reloadData];
     }
     
-    else if (searchText.length == 3 && isLocalFilter == false)
+    else if (searchText.length == 3 && isLocalFilter == false && makeUpdates)
     {
         isLocalFilter = true;
         onWebRequest = YES;
@@ -132,7 +152,7 @@ NSMutableArray *filteredList;
     }
     
     // Configure the cell...
-    if (isSearching && [filteredList count])
+    if ([filteredList count])
     {
         //If the user is searching, use the list in our filteredList array.
         cell.textLabel.text = ((FPPlayerBase*)[filteredList objectAtIndex:indexPath.row]).Fullname;
@@ -252,17 +272,16 @@ NSMutableArray *filteredList;
 {
     isSearching = YES;
     UIBarButtonItem *button = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneButtonClicked:)];
-
-    
     
     //Add the done button.]
     [self.navigationItem setRightBarButtonItem:button animated:YES];
     
 }
 
--(void)doneButtonClicked
+-(void)doneButtonClicked:(id)sender
 {
-    
+    [self.searchBar resignFirstResponder];
+    [self.navigationItem setRightBarButtonItem:nil];
 }
 
 -(void)searchBarTextDidEndEditing:(UISearchBar *)searchBar

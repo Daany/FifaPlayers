@@ -19,5 +19,9 @@
 @property(nonatomic, strong) NSMutableArray *viewControllers;
 @property(nonatomic, strong) FPDataProvider *provider;
 
+@property(nonatomic, strong) NSMutableArray *foundPlayers;
+
+@property(nonatomic) BOOL requestRunning;
+
 - (IBAction)search:(id)sender;
 @end
