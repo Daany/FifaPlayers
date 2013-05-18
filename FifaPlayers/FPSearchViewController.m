@@ -9,6 +9,7 @@
 #import "FPSearchViewController.h"
 #import "FPDataProvider.h"
 #import "FPPlayerBase.h"
+#import "FPPlayerViewController.h"
 
 @interface FPSearchViewController()
 
@@ -21,7 +22,7 @@
 // Member variables
 bool isLocalFilter;
 bool isSearching;
-bool letUserSelectRow = YES;
+bool onWebRequest;
 NSMutableArray *filteredList;
 
 - (void)viewDidLoad
@@ -49,12 +50,16 @@ NSMutableArray *filteredList;
     {
         // reset local filter
         isLocalFilter = false;
+        
+        // clear list
+        filteredList = nil;
+        [self.searchPlayerTableview reloadData];
     }
     
     else if (searchText.length == 3 && isLocalFilter == false)
     {
         isLocalFilter = true;
-        
+        onWebRequest = YES;
         // Load data from webserver
         FPDataProvider *provider = [[FPDataProvider alloc]init];
         [provider SearchPlayer:searchText withResponseMethod:^(NSMutableArray *playersList)
@@ -63,7 +68,17 @@ NSMutableArray *filteredList;
              [self.progressBar stopAnimating];
              self.players = playersList;
              filteredList = [NSMutableArray arrayWithArray:playersList];
+             
              [self.searchPlayerTableview reloadData];
+             
+             // reset on web request, so filter is allowed again
+             onWebRequest = NO;
+             
+             // filter if user already typed more letters
+             if (self.searchBar.text.length > 3)
+             {
+                 [self filterListForSearchText:self.searchBar.text];
+             }
          }];
     }
     
@@ -83,7 +98,7 @@ NSMutableArray *filteredList;
                 [filteredList addObject:player];
             }
         }
-         [self.searchPlayerTableview reloadData];
+        [self.searchPlayerTableview reloadData];
     }
 }
 
@@ -128,17 +143,13 @@ NSMutableArray *filteredList;
 
 -(NSIndexPath*)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
-    if(letUserSelectRow)
         return indexPath;
-    else
-        return nil;
 }
 
  // Override to support conditional editing of the table view.
  - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
  // Return NO if you do not want the specified item to be editable.
- return YES;
+ return NO;
  }
  
 
@@ -184,6 +195,12 @@ NSMutableArray *filteredList;
      // Pass the selected object to the new view controller.
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
+
+    FPPlayerViewController *playerViewController = [[FPPlayerViewController alloc]initWithNibName:@"player" bundle:nil];
+    [self.navigationController pushViewController:playerViewController animated:YES];
+
+
+
 }
 
 #pragma mark - UISearchControllerDelegate
@@ -193,22 +210,11 @@ NSMutableArray *filteredList;
     
 }
 
--(void)doneSearching_Clicked
-{
-    
-}
-
 -(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {   
-    if (searchText.length > 0)
+    if (searchText.length > 0 && onWebRequest == NO)
     {
         [self filterListForSearchText:searchText];
-    }
-    else
-    {
-        isSearching = NO;
-        letUserSelectRow = NO;
-        self.searchPlayerTableview = NO;
     }
 }
 
@@ -224,7 +230,7 @@ NSMutableArray *filteredList;
 
 -(void)searchBarResultsListButtonClicked:(UISearchBar *)searchBar
 {
-
+    [self filterListForSearchText:searchBar.text];
 }
 
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
@@ -235,12 +241,17 @@ NSMutableArray *filteredList;
 -(void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
 {
     isSearching = YES;
-    letUserSelectRow = NO;
+    UIBarButtonItem *button = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneButtonClicked:)];
 
-    UIBarButtonItem *button = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(searchBarTextDidEndEditing:)];
-
+    
+    
     //Add the done button.]
     [self.navigationItem setRightBarButtonItem:button animated:YES];
+    
+}
+
+-(void)doneButtonClicked
+{
     
 }
 
