@@ -25,6 +25,7 @@
     textField.clearButtonMode = UITextFieldViewModeWhileEditing;
     textField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
     textField.delegate = self;
+    textField.clearButtonMode = UITextFieldViewModeNever;
 
     [self.view addSubview:textField];
 
@@ -82,5 +83,17 @@
 
     return self;
 }
+
+- (NSString *)getSearchString
+{
+    return @"";
+}
+
+
+- (NSString *)getPositionString
+{
+    return @"";
+}
+
 
 @end

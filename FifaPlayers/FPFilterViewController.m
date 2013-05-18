@@ -11,6 +11,9 @@
 #import "FPFilterPage1Controller.h"
 #import "FPDataProvider.h"
 #import "FPSearchViewController.h"
+#import "FPFilterPage2Controller.h"
+#import "FPFilterPage3Controller.h"
+#import "FPFilterPage4Controller.h"
 
 @interface FPFilterViewController ()
 
@@ -32,7 +35,10 @@
 
     self.viewControllers = [[NSMutableArray alloc] init];
     [self.viewControllers addObject:[[FPFilterPage1Controller alloc] initWithFrame:CGRectMake(0, 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height)]];
-    [self.viewControllers addObject:[[FPFilterPage1Controller alloc] initWithFrame:CGRectMake(0, 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height)]];
+    [self.viewControllers addObject:[[FPFilterPage2Controller alloc] initWithFrame:CGRectMake(0, 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height)]];
+    [self.viewControllers addObject:[[FPFilterPage3Controller alloc] initWithFrame:CGRectMake(0, 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height)]];
+    [self.viewControllers addObject:[[FPFilterPage4Controller alloc] initWithFrame:CGRectMake(0, 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height)]];
+
     self.numberOfPages = self.viewControllers.count;
 
     self.pageControl.currentPage = 0;
@@ -107,11 +113,6 @@
         fullSearchString = [fullSearchString stringByAppendingString:[obj getSearchString]];
         fullPositionString = [fullPositionString stringByAppendingString:[obj getPositionString]];
     }];
-
-    if([fullPositionString isEqualToString:@""])
-    {
-        fullPositionString = nil;
-    }
 
     [self.provider FilterPlayers:fullSearchString andPositions:fullPositionString withResponseMethod:^(NSMutableArray *array)
     {

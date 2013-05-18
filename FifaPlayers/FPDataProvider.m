@@ -28,16 +28,8 @@ NSMutableArray *_responseData;
 -(void) FilterPlayers:(NSString *)filter andPositions:(NSString *)positions withResponseMethod:(void (^)(NSMutableArray *players)) responseMethod
 {
     filter = [filter urlEncodeUsingEncoding:NSUTF8StringEncoding];
-    NSString *url = @"";
-    if(positions != nil)
-    {
-        positions = [positions urlEncodeUsingEncoding:NSUTF8StringEncoding];
-        url = [[NSString alloc] initWithFormat:@"http://fifa.dzim.ch/api/players?f=%@&p=%@", filter, positions];
-    }
-    else
-    {
-        url = [[NSString alloc] initWithFormat:@"http://fifa.dzim.ch/api/players?f=%@", filter];
-    }
+    positions = [positions urlEncodeUsingEncoding:NSUTF8StringEncoding];
+    NSString *url = [[NSString alloc] initWithFormat:@"http://fifa.dzim.ch/api/players?f=%@&p=%@", filter, positions];
     [self GetPlayersByUrl:url withResponseMethod:responseMethod];
 }
 

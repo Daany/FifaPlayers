@@ -20,4 +20,9 @@
 
 @property(nonatomic, strong) UISegmentedControl *position;
 @property(nonatomic, strong) UITextField *maxPotential;
+@property(nonatomic, strong) UITextField *minWeakFoot;
+@property(nonatomic, strong) UITextField *maxWeakFoot;
+@property(nonatomic, strong) UISegmentedControl *foot;
+@property(nonatomic, strong) UITextField *minSkill;
+@property(nonatomic, strong) UITextField *maxSkill;
 @end
