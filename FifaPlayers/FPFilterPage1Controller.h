@@ -8,18 +8,14 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "BaseFilterController.h"
 
-@interface FPFilterPage1Controller : NSObject
-@property(nonatomic, strong) UIView *view;
+@interface FPFilterPage1Controller : BaseFilterController
+
 @property(nonatomic, strong) UITextField *minOverall;
-
 @property(nonatomic, strong) UITextField *maxOverall;
-
 @property(nonatomic, strong) UITextField *minPotential;
-
 @property(nonatomic, strong) UITextField *minAge;
-
 @property(nonatomic, strong) UITextField *maxAge;
 
-- (id)initWithFrame:(CGRect)frame;
 @end

@@ -20,11 +20,9 @@
 
 - (id)initWithFrame:(CGRect)frame
 {
-    self = [super init];
+    self = [super initWithFrame:frame];
     if(self)
     {
-        self.view = [[UIView alloc] initWithFrame: frame];
-
         UILabel *lblMinOverall= [self createLabel:CGRectMake(10, 10, 100, 30) andName:@"Min-Overall"];
         UILabel *lblMaxOverall = [self createLabel:CGRectMake(10, 50, 100, 30) andName:@"Max-Overall"];
         UILabel *lblMinPotential = [self createLabel:CGRectMake(10, 90, 100, 30) andName:@"Max-Overall"];
@@ -64,5 +62,20 @@
 
     return textField;
 }
+
+- (NSString *)getSearchString
+{
+    NSString *searchString = @"";
+
+    searchString = [self createSearchString:searchString forName:@"TotalSkill" withValue:self.minOverall.text andComparisation:@">="];
+    searchString = [self createSearchString:searchString forName:@"TotalSkill" withValue:self.maxOverall.text andComparisation:@"<="];
+    searchString = [self createSearchString:searchString forName:@"Potential" withValue:self.minPotential.text andComparisation:@">="];
+
+    searchString = [self createSearchString:searchString forName:@"BirthDate" withAge:self.minAge.text andComparisation:@"<="];
+    searchString = [self createSearchString:searchString forName:@"BirthDate" withAge:self.maxAge.text andComparisation:@">="];
+
+    return searchString;
+}
+
 
 @end
