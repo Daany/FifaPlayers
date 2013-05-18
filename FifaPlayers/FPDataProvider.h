@@ -7,14 +7,17 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "FPPlayer.h"
 
 @interface FPDataProvider : NSObject <NSURLConnectionDelegate>
 
--(void) SearchPlayer:(NSString *) searchString withResponseMethod:(void (^)(NSMutableArray *players)) responseMethod;
+- (void) SearchPlayer:(NSString *) searchString withResponseMethod:(void (^)(NSMutableArray *players)) responseMethod;
 
 - (void)FilterPlayers:(NSString *)filter andPositions:(NSString *)positions withResponseMethod:(void (^)(NSMutableArray *))responseMethod;
 
--(NSArray*) GetPlayersByUrl:(NSString*) url;
+- (void) GetPlayerByPlayerbase:(FPPlayerBase*)playerBase withResponseMethod:(void (^)(FPPlayer *player))responseMethod;
+
+- (NSArray*) GetPlayersByUrl:(NSString*) url;
 
 @property (nonatomic, strong) NSMutableData *responseData;
 
