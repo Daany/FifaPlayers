@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2C2281815EE9FD61883C3E22 /* NSString+URLEncode.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C2285791E8F2F676A37D07A /* NSString+URLEncode.m */; };
+		2C228364D10D73DB0AB19A23 /* FPResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C2283CE7773323B1531DB63 /* FPResultViewController.m */; };
 		2C228C471F4D317CECB63205 /* FPFilterPage1Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C2286206E38C446FB4D8616 /* FPFilterPage1Controller.m */; };
 		2C228FC6F396E5C192FA3FA5 /* BaseFilterController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C228656FEC7B891AA9F5958 /* BaseFilterController.m */; };
 		F69CF7D7174506F9005AC999 /* FPDataProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = F69CF7D6174506F9005AC999 /* FPDataProvider.m */; };
@@ -49,7 +50,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2C2281E1E2E824ECA746BF79 /* FPResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FPResultViewController.h; sourceTree = "<group>"; };
 		2C2283681F64ABC53C221D71 /* NSString+URLEncode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+URLEncode.h"; sourceTree = "<group>"; };
+		2C2283CE7773323B1531DB63 /* FPResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FPResultViewController.m; sourceTree = "<group>"; };
 		2C2285791E8F2F676A37D07A /* NSString+URLEncode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+URLEncode.m"; sourceTree = "<group>"; };
 		2C2286206E38C446FB4D8616 /* FPFilterPage1Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FPFilterPage1Controller.m; sourceTree = "<group>"; };
 		2C228656FEC7B891AA9F5958 /* BaseFilterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseFilterController.m; sourceTree = "<group>"; };
@@ -181,6 +184,8 @@
 				F6B7DCAB173D95D200BF5C65 /* Settings2x.png */,
 				F6B7DCB0173D9C2400BF5C65 /* FPPlayerViewController.h */,
 				F6B7DCB1173D9C2400BF5C65 /* FPPlayerViewController.m */,
+				2C2283CE7773323B1531DB63 /* FPResultViewController.m */,
+				2C2281E1E2E824ECA746BF79 /* FPResultViewController.h */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -386,6 +391,7 @@
 				2C228C471F4D317CECB63205 /* FPFilterPage1Controller.m in Sources */,
 				2C228FC6F396E5C192FA3FA5 /* BaseFilterController.m in Sources */,
 				2C2281815EE9FD61883C3E22 /* NSString+URLEncode.m in Sources */,
+				2C228364D10D73DB0AB19A23 /* FPResultViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

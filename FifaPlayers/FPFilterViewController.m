@@ -102,8 +102,7 @@
 
     [self.provider FilterPlayers:fullSearchString withResponseMethod:^(NSMutableArray *array)
     {
-        FPSearchViewController *controller = [[FPSearchViewController alloc] init];
-        [self.navigationController pushViewController:controller animated:true];
+        [self performSegueWithIdentifier:@"Result" sender:self];
     }];
 }
 @end
