@@ -126,15 +126,15 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="VUf-ls-8Gd" firstAttribute="leading" secondItem="17" secondAttribute="leading" type="default" id="3cC-DY-reE"/>
-                            <constraint firstItem="iY8-Uc-bSo" firstAttribute="top" secondItem="VUf-ls-8Gd" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="5oi-qU-Daa"/>
                             <constraint firstItem="2Mg-vp-JDN" firstAttribute="leading" secondItem="17" secondAttribute="leading" type="default" id="FJf-c9-Tj6"/>
                             <constraint firstItem="iY8-Uc-bSo" firstAttribute="leading" secondItem="17" secondAttribute="leading" type="default" id="HMI-hx-0i2"/>
                             <constraint firstItem="PSV-EF-Irt" firstAttribute="centerX" secondItem="iY8-Uc-bSo" secondAttribute="centerX" type="default" id="U7i-cM-lAK"/>
+                            <constraint firstItem="iY8-Uc-bSo" firstAttribute="top" secondItem="VUf-ls-8Gd" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="XJu-m9-wIC"/>
                             <constraint firstItem="2Mg-vp-JDN" firstAttribute="trailing" secondItem="17" secondAttribute="trailing" type="default" id="Yu7-fl-fb6"/>
+                            <constraint firstItem="VUf-ls-8Gd" firstAttribute="top" secondItem="2Mg-vp-JDN" secondAttribute="bottom" type="default" id="ZWV-hQ-TKf"/>
                             <constraint firstItem="iY8-Uc-bSo" firstAttribute="trailing" secondItem="17" secondAttribute="trailing" type="default" id="e5q-oC-D5L"/>
                             <constraint firstItem="VUf-ls-8Gd" firstAttribute="trailing" secondItem="17" secondAttribute="trailing" type="default" id="gAt-RL-uje"/>
                             <constraint firstAttribute="bottom" secondItem="PSV-EF-Irt" secondAttribute="bottom" constant="7" id="nAB-qT-clI"/>
-                            <constraint firstItem="VUf-ls-8Gd" firstAttribute="top" secondItem="17" secondAttribute="top" constant="-5" id="uLm-pR-FaD"/>
                             <constraint firstAttribute="bottom" secondItem="iY8-Uc-bSo" secondAttribute="bottom" constant="64" id="vqP-az-QeD"/>
                             <constraint firstItem="2Mg-vp-JDN" firstAttribute="top" secondItem="17" secondAttribute="top" type="default" id="zeT-1o-RkX"/>
                         </constraints>

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C2281815EE9FD61883C3E22 /* NSString+URLEncode.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C2285791E8F2F676A37D07A /* NSString+URLEncode.m */; };
 		2C228C471F4D317CECB63205 /* FPFilterPage1Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C2286206E38C446FB4D8616 /* FPFilterPage1Controller.m */; };
 		2C228FC6F396E5C192FA3FA5 /* BaseFilterController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C228656FEC7B891AA9F5958 /* BaseFilterController.m */; };
 		F69CF7D7174506F9005AC999 /* FPDataProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = F69CF7D6174506F9005AC999 /* FPDataProvider.m */; };
@@ -48,6 +49,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2C2283681F64ABC53C221D71 /* NSString+URLEncode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+URLEncode.h"; sourceTree = "<group>"; };
+		2C2285791E8F2F676A37D07A /* NSString+URLEncode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+URLEncode.m"; sourceTree = "<group>"; };
 		2C2286206E38C446FB4D8616 /* FPFilterPage1Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FPFilterPage1Controller.m; sourceTree = "<group>"; };
 		2C228656FEC7B891AA9F5958 /* BaseFilterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseFilterController.m; sourceTree = "<group>"; };
 		2C228A0C90CD294CC571D71F /* FPFilterPage1Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FPFilterPage1Controller.h; sourceTree = "<group>"; };
@@ -126,6 +129,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2C228B66A1E7A4499DC7C259 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				2C2285791E8F2F676A37D07A /* NSString+URLEncode.m */,
+				2C2283681F64ABC53C221D71 /* NSString+URLEncode.h */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
 		5405262F17469C880002AEED /* FilterControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -257,6 +269,7 @@
 				F6B7DC81173D82EB00BF5C65 /* MainStoryboard_iPhone.storyboard */,
 				F6B7DC84173D82EB00BF5C65 /* MainStoryboard_iPad.storyboard */,
 				F6B7DC70173D82EA00BF5C65 /* Supporting Files */,
+				2C228B66A1E7A4499DC7C259 /* Categories */,
 			);
 			path = FifaPlayers;
 			sourceTree = "<group>";
@@ -372,6 +385,7 @@
 				F69CF800174645BD005AC999 /* UIImageView+AFNetworking.m in Sources */,
 				2C228C471F4D317CECB63205 /* FPFilterPage1Controller.m in Sources */,
 				2C228FC6F396E5C192FA3FA5 /* BaseFilterController.m in Sources */,
+				2C2281815EE9FD61883C3E22 /* NSString+URLEncode.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

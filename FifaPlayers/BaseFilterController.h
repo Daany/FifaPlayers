@@ -9,9 +9,13 @@
 #import <Foundation/Foundation.h>
 
 
-@interface BaseFilterController : NSObject
+@interface BaseFilterController : NSObject<UITextFieldDelegate>
 
 @property(nonatomic, strong) UIView *view;
+
+- (UITextField *)createTextField:(CGRect)frame;
+
+- (UILabel *)createLabel:(CGRect)frame andName:(NSString *)name;
 
 - (NSString *)createSearchString:(NSString *)searchString forName:(NSString *)name withValue:(NSString *)value andComparisation:(NSString *)comparer;
 

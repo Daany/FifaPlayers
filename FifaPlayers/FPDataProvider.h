@@ -11,6 +11,9 @@
 @interface FPDataProvider : NSObject <NSURLConnectionDelegate>
 
 -(void) SearchPlayer:(NSString *) searchString withResponseMethod:(void (^)(NSMutableArray *players)) responseMethod;
+
+- (void)FilterPlayers:(NSString *)filter withResponseMethod:(void (^)(NSMutableArray *))responseMethod;
+
 -(NSArray*) GetPlayersByUrl:(NSString*) url;
 
 @property (nonatomic, strong) NSMutableData *responseData;

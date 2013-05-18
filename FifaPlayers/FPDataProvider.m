@@ -10,6 +10,7 @@
 #import "FPPlayer.h"
 #import "objc/runtime.h"
 #import "AFNetworking.h"
+#import "NSString+URLEncode.h"
 
 @implementation FPDataProvider
 
@@ -17,11 +18,17 @@ NSMutableArray *_responseData;
 
 -(void) SearchPlayer:(NSString *) searchString withResponseMethod:(void (^)(NSMutableArray *players)) responseMethod
 {
+    searchString = [searchString urlEncodeUsingEncoding:NSUTF8StringEncoding];
     NSString *url = [[NSString alloc] initWithFormat:@"http://fifa.dzim.ch/api/players?q=%@", searchString];
     [self GetPlayersByUrl:url withResponseMethod:responseMethod];
-    
-    
     //return [[NSArray alloc] initWithObjects:@"Lionel Messi", @"Cristiano Ronaldo", @"Franck Ribéry", @"Marco Reus", nil];
+}
+
+-(void) FilterPlayers:(NSString *)filter withResponseMethod:(void (^)(NSMutableArray *players)) responseMethod
+{
+    filter = [filter urlEncodeUsingEncoding:NSUTF8StringEncoding];
+    NSString *url = [[NSString alloc] initWithFormat:@"http://fifa.dzim.ch/api/players?f=%@", filter];
+    [self GetPlayersByUrl:url withResponseMethod:responseMethod];
 }
 
 

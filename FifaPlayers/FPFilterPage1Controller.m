@@ -10,7 +10,6 @@
 
 
 @interface FPFilterPage1Controller ()
-- (UITextField *)createTextField:(CGRect)frame;
 @end
 
 @implementation FPFilterPage1Controller
@@ -37,30 +36,6 @@
     }
 
     return self;
-}
-
-- (UILabel *)createLabel:(CGRect)frame andName:(NSString *)name
-{
-    UILabel *lbl = [[UILabel alloc] initWithFrame:frame];
-    lbl.text = name;
-    [self.view addSubview:lbl];
-    return lbl;
-}
-
-- (UITextField *)createTextField:(CGRect)frame
-{
-    UITextField *textField = [[UITextField alloc] initWithFrame:frame];
-    textField.borderStyle = UITextBorderStyleRoundedRect;
-    textField.font = [UIFont systemFontOfSize:15];
-    textField.autocorrectionType = UITextAutocorrectionTypeNo;
-    textField.keyboardType = UIKeyboardTypeDefault;
-    textField.returnKeyType = UIReturnKeyDone;
-    textField.clearButtonMode = UITextFieldViewModeWhileEditing;
-    textField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-
-    [self.view addSubview:textField];
-
-    return textField;
 }
 
 - (NSString *)getSearchString

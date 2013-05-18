@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+@class FPDataProvider;
+
 @interface FPFilterViewController : UIViewController <UIScrollViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
@@ -15,5 +17,7 @@
 @property(nonatomic) BOOL pageControlUsed;
 @property(nonatomic) int numberOfPages;
 @property(nonatomic, strong) NSMutableArray *viewControllers;
+@property(nonatomic, strong) FPDataProvider *provider;
+
 - (IBAction)search:(id)sender;
 @end

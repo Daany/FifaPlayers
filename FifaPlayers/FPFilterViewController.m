@@ -9,6 +9,8 @@
 #import <CoreGraphics/CoreGraphics.h>
 #import "FPFilterViewController.h"
 #import "FPFilterPage1Controller.h"
+#import "FPDataProvider.h"
+#import "FPSearchViewController.h"
 
 @interface FPFilterViewController ()
 
@@ -19,6 +21,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    self.provider = [[FPDataProvider alloc]init];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -88,6 +92,18 @@
 
 - (IBAction)search:(id)sender
 {
+    __block NSString *fullSearchString = @"1 = 1";
 
+    [self.viewControllers enumerateObjectsUsingBlock:^(BaseFilterController *obj, NSUInteger idx, BOOL *stop)
+    {
+        NSString *partSearchString = [obj getSearchString];
+        fullSearchString = [fullSearchString stringByAppendingString:partSearchString];
+    }];
+
+    [self.provider FilterPlayers:fullSearchString withResponseMethod:^(NSMutableArray *array)
+    {
+        FPSearchViewController *controller = [[FPSearchViewController alloc] init];
+        [self.navigationController pushViewController:controller animated:true];
+    }];
 }
 @end
