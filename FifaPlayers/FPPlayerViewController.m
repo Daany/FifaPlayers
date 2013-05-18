@@ -14,12 +14,28 @@
 
 @implementation FPPlayerViewController
 
+FPPlayer *currentPlayer;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
     }
+    return self;
+}
+
+-(id)initWithPlayer:(FPPlayerBase*)player NibName:(NSString*)nibNameOrNil bundle:(NSBundle*)nibBundleOrNil
+{
+    self = [self initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    
+    if (self)
+    {
+        currentPlayer = (FPPlayer*)player;
+        self.navigationItem.title = player.Fullname;
+        // Load full Player
+    }
+    
     return self;
 }
 

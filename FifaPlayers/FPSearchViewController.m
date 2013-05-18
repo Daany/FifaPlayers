@@ -196,11 +196,21 @@ NSMutableArray *filteredList;
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
 
-    FPPlayerViewController *playerViewController = [[FPPlayerViewController alloc]initWithNibName:@"player" bundle:nil];
+    FPPlayerBase *selectedPlayer = [filteredList objectAtIndex:indexPath.row];
+    
+    FPPlayerViewController *playerViewController = [[FPPlayerViewController alloc]initWithPlayer:selectedPlayer NibName:nil bundle:nil];
+    
+    
+    
     [self.navigationController pushViewController:playerViewController animated:YES];
+//    [self presentViewController:playerViewController animated:YES completion:nil];
+    
+//    [self presentViewController:playerViewController animated:YES completion:nil];
+}
 
-
-
+-(void)closeViewController
+{
+    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - UISearchControllerDelegate

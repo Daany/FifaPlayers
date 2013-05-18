@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FPPlayerBase.h"
+#import "FPPlayer.h"
 
 @interface FPPlayerViewController : UIViewController
+
+-(id)initWithPlayer:(FPPlayerBase*)player NibName:(NSString*)nibNameOrNil bundle:(NSBundle*)nibBundleOrNil;
 
 @end
