@@ -220,9 +220,8 @@ NSMutableArray *filteredList;
     
     FPPlayerViewController *playerViewController = [[FPPlayerViewController alloc]initWithPlayer:selectedPlayer NibName:nil bundle:nil];
     
-    
-    
     [self.navigationController pushViewController:playerViewController animated:YES];
+    
 //    [self presentViewController:playerViewController animated:YES completion:nil];
     
 //    [self presentViewController:playerViewController animated:YES completion:nil];

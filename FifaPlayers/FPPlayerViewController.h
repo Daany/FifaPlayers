@@ -12,6 +12,8 @@
 
 @interface FPPlayerViewController : UIViewController
 
+@property (weak, nonatomic) IBOutlet UILabel *lblClub;
+
 -(id)initWithPlayer:(FPPlayerBase*)player NibName:(NSString*)nibNameOrNil bundle:(NSBundle*)nibBundleOrNil;
 
 @end

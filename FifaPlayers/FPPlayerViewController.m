@@ -7,6 +7,7 @@
 //
 
 #import "FPPlayerViewController.h"
+#import "FPDataProvider.h"
 
 @interface FPPlayerViewController ()
 
@@ -31,8 +32,15 @@ FPPlayer *currentPlayer;
     
     if (self)
     {
-        currentPlayer = (FPPlayer*)player;
+        
         self.navigationItem.title = player.Fullname;
+        FPDataProvider *provider = [[FPDataProvider alloc]init];
+        [provider GetPlayerByPlayerbase:player withResponseMethod:^(FPPlayer *fullPlayer)
+        {
+            currentPlayer = fullPlayer;
+            self.lblClub.text = fullPlayer.Club;
+        }];
+        
         // Load full Player
     }
     

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="11G63b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="12C54" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="4">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1930"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller - Search-->
@@ -85,7 +85,28 @@
                                 </items>
                             </navigationBar>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zCq-Kd-Jkk">
+                                <subviews>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Club" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="472-u7-nWM">
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Od-0j-i7J">
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="189" id="wH0-B6-ZAU"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="472-u7-nWM" firstAttribute="leading" secondItem="zCq-Kd-Jkk" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="TRV-91-2HU"/>
+                                    <constraint firstAttribute="trailing" secondItem="4Od-0j-i7J" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="Wm4-mH-LYu"/>
+                                    <constraint firstItem="4Od-0j-i7J" firstAttribute="top" secondItem="zCq-Kd-Jkk" secondAttribute="top" constant="20" symbolic="YES" type="default" id="d2N-d5-7qO"/>
+                                    <constraint firstItem="472-u7-nWM" firstAttribute="top" secondItem="zCq-Kd-Jkk" secondAttribute="top" constant="20" symbolic="YES" type="default" id="j9U-1v-6tb"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -99,6 +120,9 @@
                             <constraint firstAttribute="bottom" secondItem="zCq-Kd-Jkk" secondAttribute="bottom" constant="-9" id="kYc-je-ZmP"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="lblClub" destination="4Od-0j-i7J" id="A6F-RP-zGy"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lb0-zt-VrI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -249,36 +273,6 @@
         <image name="Search.png" width="32" height="32"/>
         <image name="Settings.png" width="32" height="32"/>
     </resources>
-    <classes>
-        <class className="FPFavoritesViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FPFavoritesViewController.h"/>
-        </class>
-        <class className="FPFilterViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FPFilterViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="search:"/>
-                <relationship kind="outlet" name="pageControl" candidateClass="UIPageControl"/>
-                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
-            </relationships>
-        </class>
-        <class className="FPPlayerViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FPPlayerViewController.h"/>
-        </class>
-        <class className="FPSearchViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FPSearchViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="progressBar" candidateClass="UIActivityIndicatorView"/>
-                <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
-                <relationship kind="outlet" name="searchPlayerTableview" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="FPSettingsViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FPSettingsViewController.h"/>
-        </class>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
