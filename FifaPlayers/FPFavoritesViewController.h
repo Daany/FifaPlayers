@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FPFavoritesViewController : UIViewController
+@class FPFavoriteProvider;
 
+@interface FPFavoritesViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
+
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+
+@property(nonatomic, strong) FPFavoriteProvider *favoriteProvider;
+@property(nonatomic, strong) id selectedPlayer;
 @end

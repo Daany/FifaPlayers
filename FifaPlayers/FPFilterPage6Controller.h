@@ -7,10 +7,10 @@
 
 
 #import <Foundation/Foundation.h>
-#import "BaseFilterController.h"
+#import "FPBaseFilterController.h"
 
 
-@interface FPFilterPage6Controller : BaseFilterController
+@interface FPFilterPage6Controller : FPBaseFilterController
 @property(nonatomic, strong) UITextField *minGKKicking;
 @property(nonatomic, strong) UITextField *maxGKKicking;
 @property(nonatomic, strong) UITextField *minGKReflexes;

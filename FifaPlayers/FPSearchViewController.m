@@ -231,16 +231,17 @@ NSMutableArray *filteredList;
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
 
-    FPPlayerBase *selectedPlayer = [filteredList objectAtIndex:indexPath.row];
-    
-    FPPlayerViewController *playerViewController = [[FPPlayerViewController alloc]initWithPlayer:selectedPlayer NibName:nil bundle:nil];
-    
-    [self.navigationController pushViewController:playerViewController animated:YES];
-    
-//    [self presentViewController:playerViewController animated:YES completion:nil];
-    
-//    [self presentViewController:playerViewController animated:YES completion:nil];
+    self.selectedPlayer = [filteredList objectAtIndex:indexPath.row];
+
+    [self performSegueWithIdentifier:@"Detail" sender:self];
 }
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    FPPlayerViewController *controller = (FPPlayerViewController *)segue.destinationViewController;
+    controller.player = self.selectedPlayer;
+}
+
 
 -(void)closeViewController
 {

@@ -7,10 +7,10 @@
 
 
 #import <Foundation/Foundation.h>
-#import "BaseFilterController.h"
+#import "FPBaseFilterController.h"
 
 
-@interface FPFilterPage5Controller : BaseFilterController
+@interface FPFilterPage5Controller : FPBaseFilterController
 @property(nonatomic, strong) UITextField *minStamina;
 @property(nonatomic, strong) UITextField *maxStamina;
 @property(nonatomic, strong) UITextField *minStrength;

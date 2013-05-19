@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import <QuartzCore/QuartzCore.h>
 #import "FPAppDelegate.h"
 
 int main(int argc, char *argv[])

@@ -45,6 +45,14 @@ NSMutableArray *_responseData;
         player.PlayerId = [JSON objectForKey:@"PlayerId"];
         player.Club = [JSON objectForKey:@"Club"];
         player.Position = [JSON objectForKey:@"Position"];
+
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss"];
+        NSDate *birthDate = [formatter dateFromString:[JSON objectForKey:@"BirthDate"]];
+        NSDate *now = [NSDate date];
+        NSTimeInterval difference = [now timeIntervalSinceDate:birthDate];
+        int years = floor(difference / 86400 / 365);
+        player.Age = years;
         player.Potential = [[JSON objectForKey:@"Potential"] intValue];
         player.TotalSkill = [[JSON objectForKey:@"TotalSkill"] intValue];
         player.BirthDate = [self convertToDate:[JSON objectForKey:@"BirthDate"]];
@@ -77,8 +85,8 @@ NSMutableArray *_responseData;
         player.LongShots = [[JSON objectForKey:@"LongShots"] intValue];
         player.Marking = [[JSON objectForKey:@"Marking"] intValue];
         player.Penalties = [[JSON objectForKey:@"Penalties"] intValue];
-        player.PositionString = [JSON objectForKey:@"PositionString"];
-        player.Reactions = [[JSON objectForKey:@"Reaction"] intValue];
+        player.PositionString = [JSON objectForKey:@"Position"][0];
+        player.Reactions = [[JSON objectForKey:@"Reactions"] intValue];
         player.ShortPassing = [[JSON objectForKey:@"ShortPassing"] intValue];
         player.ShotPower = [[JSON objectForKey:@"ShotPower"] intValue];
         player.SkillMoves = [[JSON objectForKey:@"SkillMoves"] intValue];
@@ -92,7 +100,9 @@ NSMutableArray *_responseData;
         player.Volleys = [[JSON objectForKey:@"Volleys"] intValue];
         player.WeakFoot = [[JSON objectForKey:@"WeakFoot"] intValue];
         player.Weight = [JSON objectForKey:@"Weight"];
-        
+        player.Foot  = [JSON objectForKey:@"Foot"];
+        player.Positioning = [[JSON objectForKey:@"Positioning"] intValue];
+
         responseMethod(player);
     }
                                          
@@ -134,7 +144,6 @@ NSMutableArray *_responseData;
     NSError *error, id JSON) { NSLog(@"Request Failure Because %@",[error userInfo]); }];
     
     [operation start];
-        
 }
 
 -(NSDate * )convertToDate:(NSString *) str

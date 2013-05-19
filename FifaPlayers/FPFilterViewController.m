@@ -34,7 +34,6 @@
 {
     [super viewDidAppear:animated];
 
-
     self.viewControllers = [[NSMutableArray alloc] init];
     [self.viewControllers addObject:[[FPFilterPage1Controller alloc] initWithFrame:CGRectMake(0, 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height)]];
     [self.viewControllers addObject:[[FPFilterPage2Controller alloc] initWithFrame:CGRectMake(0, 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height)]];
@@ -42,7 +41,6 @@
     [self.viewControllers addObject:[[FPFilterPage4Controller alloc] initWithFrame:CGRectMake(0, 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height)]];
     [self.viewControllers addObject:[[FPFilterPage5Controller alloc] initWithFrame:CGRectMake(0, 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height)]];
     [self.viewControllers addObject:[[FPFilterPage6Controller alloc] initWithFrame:CGRectMake(0, 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height)]];
-
 
     self.numberOfPages = self.viewControllers.count;
 
@@ -60,7 +58,6 @@
     [self loadScrollViewWithPage:0];
     [self loadScrollViewWithPage:1];
 
-
     UIBarButtonItem *button = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(search:)];
     [self.navigationItem setRightBarButtonItem:button animated:YES];
 }
@@ -69,7 +66,7 @@
     if (page < 0) return;
     if (page >= self.numberOfPages) return;
 
-    FPFilterPage1Controller *controller = [self.viewControllers objectAtIndex:page];
+    FPBaseFilterController *controller = [self.viewControllers objectAtIndex:page];
 
     if (nil == controller.view.superview) {
         CGRect frame = self.scrollView.frame;
@@ -113,7 +110,7 @@
     __block NSString *fullSearchString = @"1 = 1";
     __block NSString *fullPositionString = @"";
 
-    [self.viewControllers enumerateObjectsUsingBlock:^(BaseFilterController *obj, NSUInteger idx, BOOL *stop)
+    [self.viewControllers enumerateObjectsUsingBlock:^(FPBaseFilterController *obj, NSUInteger idx, BOOL *stop)
     {
         fullSearchString = [fullSearchString stringByAppendingString:[obj getSearchString]];
         fullPositionString = [fullPositionString stringByAppendingString:[obj getPositionString]];

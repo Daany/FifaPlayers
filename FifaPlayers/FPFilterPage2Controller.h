@@ -7,10 +7,10 @@
 
 
 #import <Foundation/Foundation.h>
-#import "BaseFilterController.h"
+#import "FPBaseFilterController.h"
 
 
-@interface FPFilterPage2Controller : BaseFilterController
+@interface FPFilterPage2Controller : FPBaseFilterController
 @property(nonatomic, strong) UISegmentedControl *attackWorkRate;
 @property(nonatomic, strong) UISegmentedControl *defenseWorkRate;
 @property(nonatomic, strong) UITextField *minBallcontrol;

@@ -8,9 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import "BaseFilterController.h"
+#import "FPBaseFilterController.h"
 
-@interface FPFilterPage1Controller : BaseFilterController
+@interface FPFilterPage1Controller : FPBaseFilterController
 
 @property(nonatomic, strong) UITextField *minOverall;
 @property(nonatomic, strong) UITextField *maxOverall;

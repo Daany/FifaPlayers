@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 
-@interface BaseFilterController : NSObject<UITextFieldDelegate>
+@interface FPBaseFilterController : NSObject<UITextFieldDelegate>
 
 @property(nonatomic, strong) UIView *view;
 

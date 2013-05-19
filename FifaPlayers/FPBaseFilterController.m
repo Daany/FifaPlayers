@@ -6,12 +6,25 @@
 //
 
 
-#import "BaseFilterController.h"
+#import "FPBaseFilterController.h"
 
 
-@implementation BaseFilterController
+@implementation FPBaseFilterController
 {
 
+}
+
+
+- (id)initWithFrame:(CGRect)frame
+{
+    self = [super init];
+
+    if(self)
+    {
+        self.view = [[UIView alloc] initWithFrame: frame];
+    }
+
+    return self;
 }
 
 - (UITextField *)createTextField:(CGRect)frame
@@ -70,18 +83,6 @@
     }
 
     return searchString;
-}
-
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super init];
-
-    if(self)
-    {
-        self.view = [[UIView alloc] initWithFrame: frame];
-    }
-
-    return self;
 }
 
 - (NSString *)getSearchString

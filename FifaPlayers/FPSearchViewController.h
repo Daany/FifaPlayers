@@ -16,6 +16,8 @@
 
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 
+@property(nonatomic, strong) id selectedPlayer;
+
 - (void)setPLayerList:(NSMutableArray *)list;
 
 - (void)disableUpdates;

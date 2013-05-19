@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="12C54" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="11G63b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="4">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1930"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller - Search-->
@@ -56,7 +56,7 @@
                         <outlet property="searchBar" destination="5p3-aH-UVB" id="GbZ-tN-5fq"/>
                         <outlet property="searchDisplayController" destination="tHF-hM-CQx" id="5vQ-gt-ndr"/>
                         <outlet property="searchPlayerTableview" destination="JFh-G3-n4Q" id="rXx-Ce-oae"/>
-                        <segue destination="erK-sq-7hW" kind="modal" id="hbp-sv-TwF"/>
+                        <segue destination="erK-sq-7hW" kind="push" identifier="Detail" id="hbp-sv-TwF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="10" sceneMemberID="firstResponder"/>
@@ -76,52 +76,37 @@
             <objects>
                 <viewController id="erK-sq-7hW" customClass="FPPlayerViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="b5u-4V-j1K">
-                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WXo-rO-Ivm">
-                                <items>
-                                    <navigationItem title="Player" id="3sB-OS-DBh"/>
-                                </items>
-                            </navigationBar>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zCq-Kd-Jkk">
                                 <subviews>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Club" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="472-u7-nWM">
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Od-0j-i7J">
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="189" id="wH0-B6-ZAU"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mXR-9P-7Uh"/>
+                                    <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="Gk0-qX-Khm"/>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="472-u7-nWM" firstAttribute="leading" secondItem="zCq-Kd-Jkk" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="TRV-91-2HU"/>
-                                    <constraint firstAttribute="trailing" secondItem="4Od-0j-i7J" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="Wm4-mH-LYu"/>
-                                    <constraint firstItem="4Od-0j-i7J" firstAttribute="top" secondItem="zCq-Kd-Jkk" secondAttribute="top" constant="20" symbolic="YES" type="default" id="d2N-d5-7qO"/>
-                                    <constraint firstItem="472-u7-nWM" firstAttribute="top" secondItem="zCq-Kd-Jkk" secondAttribute="top" constant="20" symbolic="YES" type="default" id="j9U-1v-6tb"/>
+                                    <constraint firstItem="mXR-9P-7Uh" firstAttribute="top" secondItem="zCq-Kd-Jkk" secondAttribute="top" constant="-54" id="8xw-bC-coN"/>
+                                    <constraint firstAttribute="bottom" secondItem="mXR-9P-7Uh" secondAttribute="bottom" constant="55" id="Ba0-Ux-jSO"/>
+                                    <constraint firstItem="Gk0-qX-Khm" firstAttribute="centerX" secondItem="mXR-9P-7Uh" secondAttribute="centerX" type="default" id="GcP-WJ-vAE"/>
+                                    <constraint firstItem="mXR-9P-7Uh" firstAttribute="trailing" secondItem="zCq-Kd-Jkk" secondAttribute="trailing" type="default" id="PWt-7d-mpG"/>
+                                    <constraint firstItem="mXR-9P-7Uh" firstAttribute="leading" secondItem="zCq-Kd-Jkk" secondAttribute="leading" type="default" id="XB4-wJ-e96"/>
+                                    <constraint firstAttribute="bottom" secondItem="Gk0-qX-Khm" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="fue-ee-6Q1"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="WXo-rO-Ivm" firstAttribute="leading" secondItem="b5u-4V-j1K" secondAttribute="leading" type="default" id="5Jo-7U-MQn"/>
                             <constraint firstItem="zCq-Kd-Jkk" firstAttribute="top" secondItem="b5u-4V-j1K" secondAttribute="top" constant="53" id="EK9-0f-gv6"/>
-                            <constraint firstItem="WXo-rO-Ivm" firstAttribute="top" secondItem="b5u-4V-j1K" secondAttribute="top" type="default" id="Hup-gF-VBl"/>
                             <constraint firstItem="zCq-Kd-Jkk" firstAttribute="trailing" secondItem="b5u-4V-j1K" secondAttribute="trailing" type="default" id="MaK-bM-XFm"/>
                             <constraint firstItem="zCq-Kd-Jkk" firstAttribute="leading" secondItem="b5u-4V-j1K" secondAttribute="leading" type="default" id="U6P-kv-JiB"/>
-                            <constraint firstItem="WXo-rO-Ivm" firstAttribute="trailing" secondItem="b5u-4V-j1K" secondAttribute="trailing" type="default" id="YJG-QR-wOQ"/>
                             <constraint firstAttribute="bottom" secondItem="zCq-Kd-Jkk" secondAttribute="bottom" constant="-9" id="kYc-je-ZmP"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="iKk-yX-woU"/>
                     <connections>
-                        <outlet property="lblClub" destination="4Od-0j-i7J" id="A6F-RP-zGy"/>
+                        <outlet property="pageControl" destination="Gk0-qX-Khm" id="yxr-UZ-pzz"/>
+                        <outlet property="scrollView" destination="mXR-9P-7Uh" id="9wK-5F-QUy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lb0-zt-VrI" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -151,9 +136,24 @@
                     <view key="view" contentMode="scaleToFill" id="hiK-6c-t8v">
                         <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="nWi-Jp-2hd">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="nWi-Jp-2hd" firstAttribute="trailing" secondItem="hiK-6c-t8v" secondAttribute="trailing" type="default" id="3aQ-Bf-DlS"/>
+                            <constraint firstItem="nWi-Jp-2hd" firstAttribute="leading" secondItem="hiK-6c-t8v" secondAttribute="leading" type="default" id="3fG-dM-Goh"/>
+                            <constraint firstItem="nWi-Jp-2hd" firstAttribute="top" secondItem="hiK-6c-t8v" secondAttribute="top" type="default" id="gY5-cy-bS9"/>
+                            <constraint firstItem="nWi-Jp-2hd" firstAttribute="bottom" secondItem="hiK-6c-t8v" secondAttribute="bottom" type="default" id="hJr-Ko-xYk"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="lho-ur-XX7"/>
+                    <connections>
+                        <outlet property="tableView" destination="nWi-Jp-2hd" id="nfu-ag-stk"/>
+                        <segue destination="erK-sq-7hW" kind="push" identifier="Detail" id="h9n-0Q-L92"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V7e-yI-N3l" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -276,6 +276,9 @@
     <classes>
         <class className="FPFavoritesViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FPFavoritesViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
         </class>
         <class className="FPFilterViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FPFilterViewController.h"/>
@@ -288,7 +291,8 @@
         <class className="FPPlayerViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FPPlayerViewController.h"/>
             <relationships>
-                <relationship kind="outlet" name="lblClub" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="pageControl" candidateClass="UIPageControl"/>
+                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
             </relationships>
         </class>
         <class className="FPSearchViewController" superclassName="UIViewController">
@@ -313,5 +317,6 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="Rv3-Eq-l6I"/>
+        <segue reference="h9n-0Q-L92"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -10,10 +10,24 @@
 #import "FPPlayerBase.h"
 #import "FPPlayer.h"
 
-@interface FPPlayerViewController : UIViewController
+@class FPFavoriteProvider;
 
-@property (weak, nonatomic) IBOutlet UILabel *lblClub;
+@interface FPPlayerViewController : UIViewController <UIScrollViewDelegate>
 
--(id)initWithPlayer:(FPPlayerBase*)player NibName:(NSString*)nibNameOrNil bundle:(NSBundle*)nibBundleOrNil;
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (weak, nonatomic) IBOutlet UIPageControl *pageControl;
 
+@property(nonatomic, strong) FPPlayer *player;
+
+@property(nonatomic) int numberOfPages;
+
+@property(nonatomic, strong) NSMutableArray *viewControllers;
+
+@property(nonatomic) BOOL pageControlUsed;
+
+@property(nonatomic, strong) FPFavoriteProvider *favoriteProvider;
+
+@property(nonatomic, strong) UIBarButtonItem *favoriteButton;
+
+- (void)favorite:(id)obj;
 @end
