@@ -23,6 +23,11 @@ static FPFavoriteProvider *sharedSingleton;
     if(self)
     {
         self.favorites = [[NSMutableArray alloc] init];
+
+        self.path = @"~/Documents/favorites.fif";
+        self.path = [self.path stringByExpandingTildeInPath];
+
+        [self loadFromFile];
     }
 
     return self;
@@ -33,6 +38,7 @@ static FPFavoriteProvider *sharedSingleton;
     if(![self playerIsFavorite:player])
     {
         [self.favorites addObject:player];
+        [self saveToFile];
     }
 }
 
@@ -52,6 +58,20 @@ static FPFavoriteProvider *sharedSingleton;
         }];
 
         [self.favorites removeObjectAtIndex:index];
+        [self saveToFile];
+    }
+}
+
+- (void)saveToFile
+{
+    [NSKeyedArchiver archiveRootObject:self.favorites toFile:self.path];
+}
+
+- (void)loadFromFile
+{
+    if([[NSFileManager defaultManager] fileExistsAtPath:self.path])
+    {
+        self.favorites = [NSKeyedUnarchiver unarchiveObjectWithFile:self.path];
     }
 }
 

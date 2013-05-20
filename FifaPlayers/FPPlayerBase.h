@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface FPPlayerBase : NSObject
+@interface FPPlayerBase : NSObject<NSCoding>
 
 @property (nonatomic) NSString *PlayerId;
 @property (nonatomic) NSString *Fullname;

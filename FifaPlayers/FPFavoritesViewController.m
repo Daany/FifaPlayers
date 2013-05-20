@@ -22,6 +22,7 @@
     [super viewDidLoad];
 
     self.favoriteProvider = [FPFavoriteProvider getInstance];
+
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
 }

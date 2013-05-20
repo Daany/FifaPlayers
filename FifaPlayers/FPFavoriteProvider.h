@@ -16,6 +16,8 @@
 
 @property(nonatomic, strong) NSMutableArray *favorites;
 
+@property(nonatomic, copy) NSString *path;
+
 + (FPFavoriteProvider *)getInstance;
 
 - (void)addToFavorite:(FPPlayerBase *)player;

@@ -129,7 +129,7 @@
             </objects>
             <point key="canvasLocation" x="1" y="1063"/>
         </scene>
-        <!--Favorites View Controller-->
+        <!--Favorites View Controller - Favorites-->
         <scene sceneID="fYx-gw-hWa">
             <objects>
                 <viewController id="EHo-5b-ZVl" customClass="FPFavoritesViewController" sceneMemberID="viewController">
@@ -149,7 +149,7 @@
                             <constraint firstItem="nWi-Jp-2hd" firstAttribute="bottom" secondItem="hiK-6c-t8v" secondAttribute="bottom" type="default" id="hJr-Ko-xYk"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="lho-ur-XX7"/>
+                    <navigationItem key="navigationItem" title="Favorites" id="lho-ur-XX7"/>
                     <connections>
                         <outlet property="tableView" destination="nWi-Jp-2hd" id="nfu-ag-stk"/>
                         <segue destination="erK-sq-7hW" kind="push" identifier="Detail" id="h9n-0Q-L92"/>
