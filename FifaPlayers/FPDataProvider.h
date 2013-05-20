@@ -17,8 +17,13 @@
 
 - (void) GetPlayerByPlayerbase:(FPPlayerBase*)playerBase withResponseMethod:(void (^)(FPPlayer *player))responseMethod;
 
+-(NSMutableArray*)GetFavoritePlayers;
+
 - (NSArray*) GetPlayersByUrl:(NSString*) url;
+-(void)AddToFavorite:(FPPlayer *) player;
+-(void)RemoveFromFavorites:(NSString *)playerId;
 
 @property (nonatomic, strong) NSMutableData *responseData;
+@property (nonatomic, strong) NSMutableArray *favoritePlayers;
 
 @end

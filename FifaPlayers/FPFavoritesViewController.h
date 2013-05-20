@@ -10,10 +10,15 @@
 
 @class FPFavoriteProvider;
 
+<<<<<<< HEAD
 @interface FPFavoritesViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @property(nonatomic, strong) FPFavoriteProvider *favoriteProvider;
 @property(nonatomic, strong) id selectedPlayer;
+=======
+@property(nonatomic, strong) NSMutableArray *foundPlayers;
+
+>>>>>>> Favorites data provider
 @end

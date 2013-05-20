@@ -7,9 +7,14 @@
 //
 
 #import "FPFavoritesViewController.h"
+<<<<<<< HEAD
 #import "FPFavoriteProvider.h"
 #import "FPPlayerBase.h"
 #import "FPPlayerViewController.h"
+=======
+#import "FPSearchViewController.h"
+#import "FPDataProvider.h"
+>>>>>>> Favorites data provider
 
 @interface FPFavoritesViewController ()
 
@@ -62,6 +67,7 @@
 
 -(NSIndexPath*)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+<<<<<<< HEAD
     return indexPath;
 }
 
@@ -79,6 +85,14 @@
     }
     else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+=======
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        // Custom initialization
+        self.foundPlayers = [[[FPDataProvider alloc]init] GetFavoritePlayers];
+        [self performSegueWithIdentifier:@"Result" sender:self];
+        
+>>>>>>> Favorites data provider
     }
 }
 
@@ -98,6 +112,16 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if([segue.identifier isEqualToString:@"Result"])
+    {
+        FPSearchViewController *controller = segue.destinationViewController;
+        [controller setPLayerList:self.foundPlayers];
+        [controller disableUpdates];
+    }
 }
 
 @end
