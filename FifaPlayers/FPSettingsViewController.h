@@ -10,4 +10,5 @@
 
 @interface FPSettingsViewController : UIViewController
 
+- (IBAction)removeFavorites:(id)sender;
 @end

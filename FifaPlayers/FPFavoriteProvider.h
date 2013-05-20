@@ -24,5 +24,9 @@
 
 - (void)removeFromFavorite:(FPPlayerBase *)player;
 
+- (void)saveToFile;
+
+- (void)loadFromFile;
+
 - (bool)playerIsFavorite:(FPPlayerBase *)player;
 @end

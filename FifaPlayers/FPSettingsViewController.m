@@ -7,6 +7,7 @@
 //
 
 #import "FPSettingsViewController.h"
+#import "FPFavoriteProvider.h"
 
 @interface FPSettingsViewController ()
 
@@ -35,4 +36,10 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)removeFavorites:(id)sender
+{
+    FPFavoriteProvider *provider = [FPFavoriteProvider getInstance];
+    provider.favorites = [[NSMutableArray alloc] init];
+    [provider saveToFile];
+}
 @end
