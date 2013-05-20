@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C2280E4362C99398FC54487 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C228D1192B39F5EBD3D1411 /* MBProgressHUD.m */; };
 		2C22814933741B67C2A1EF62 /* FPFilterPage6Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C2289D992E7AD4AB6DFFC7D /* FPFilterPage6Controller.m */; };
 		2C2281745F220D45A426FD08 /* FavoriteDisabled.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C22816A3F50D3B9D20CA361 /* FavoriteDisabled.png */; };
 		2C2281815EE9FD61883C3E22 /* NSString+URLEncode.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C2285791E8F2F676A37D07A /* NSString+URLEncode.m */; };
@@ -101,6 +102,7 @@
 		2C228656FEC7B891AA9F5958 /* FPBaseFilterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FPBaseFilterController.m; sourceTree = "<group>"; };
 		2C22877DC1D70EDC48BC8923 /* FPFilterPage2Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FPFilterPage2Controller.m; sourceTree = "<group>"; };
 		2C22885B76C456D14B4C243A /* Settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Settings.png; sourceTree = "<group>"; };
+		2C22896D6BC236C74BED9DA8 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		2C2289CBF3BEBA30E2F0F715 /* FPPlayerPage2Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FPPlayerPage2Controller.h; sourceTree = "<group>"; };
 		2C2289D992E7AD4AB6DFFC7D /* FPFilterPage6Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FPFilterPage6Controller.m; sourceTree = "<group>"; };
 		2C228A0C90CD294CC571D71F /* FPFilterPage1Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FPFilterPage1Controller.h; sourceTree = "<group>"; };
@@ -110,6 +112,7 @@
 		2C228B5BD4CBBD1F66540376 /* FPFilterPage6Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FPFilterPage6Controller.h; sourceTree = "<group>"; };
 		2C228C7BC13AB0C741A57890 /* FPBaseFilterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FPBaseFilterController.h; sourceTree = "<group>"; };
 		2C228CB8621CBC90DA0491C5 /* Skill@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Skill@2x.png"; sourceTree = "<group>"; };
+		2C228D1192B39F5EBD3D1411 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		2C228D6070CA89663A21A11C /* FPFilterPage2Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FPFilterPage2Controller.h; sourceTree = "<group>"; };
 		2C228DD43EF24A57987BD5BE /* FPPlayerPage5Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FPPlayerPage5Controller.m; sourceTree = "<group>"; };
 		2C228DF12D202AE53B964721 /* FPPlayerPage6Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FPPlayerPage6Controller.m; sourceTree = "<group>"; };
@@ -182,6 +185,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2C228312D571FFA1BFE78BAC /* MBProcessHUD */ = {
+			isa = PBXGroup;
+			children = (
+				2C22896D6BC236C74BED9DA8 /* MBProgressHUD.h */,
+				2C228D1192B39F5EBD3D1411 /* MBProgressHUD.m */,
+			);
+			name = MBProcessHUD;
+			sourceTree = "<group>";
+		};
 		2C2283896D170D1DD1C83E42 /* PlayerControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -326,6 +338,7 @@
 			isa = PBXGroup;
 			children = (
 				F69CF7E4174645BD005AC999 /* AFNetworking */,
+				2C228312D571FFA1BFE78BAC /* MBProcessHUD */,
 			);
 			name = Libs;
 			sourceTree = "<group>";
@@ -506,6 +519,7 @@
 				2C2282648DA69F0F013E7BF9 /* FPPlayerPage5Controller.m in Sources */,
 				2C2285B59087E7E248C4C293 /* FPPlayerPage6Controller.m in Sources */,
 				2C2283501A74704F2772AE5C /* FPFavoriteProvider.m in Sources */,
+				2C2280E4362C99398FC54487 /* MBProgressHUD.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

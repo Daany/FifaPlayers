@@ -8,6 +8,7 @@
 
 #import "FPSettingsViewController.h"
 #import "FPFavoriteProvider.h"
+#import "MBProgressHUD.h"
 
 @interface FPSettingsViewController ()
 
@@ -41,5 +42,14 @@
     FPFavoriteProvider *provider = [FPFavoriteProvider getInstance];
     provider.favorites = [[NSMutableArray alloc] init];
     [provider saveToFile];
+
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.labelText = @"Deleted all favorites";
+    hud.mode = MBProgressHUDModeText;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 1.0 * NSEC_PER_SEC);
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void)
+    {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+    });
 }
 @end
