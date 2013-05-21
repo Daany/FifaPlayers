@@ -178,8 +178,13 @@ NSMutableArray *_responseData;
 
 -(NSString *)PlayerToJSON:(FPPlayer*) player
 {
-    NSError *writeError = nil; 
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:player options:NSJSONWritingPrettyPrinted error:&writeError];
+    NSOutputStream *outputStream = [[NSOutputStream alloc]init];
+    NSError *error = nil;
+    [NSJSONSerialization writeJSONObject:player toStream:outputStream options:0 error:&error];
+    
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:outputStream options:NSJSONWritingPrettyPrinted error:&error];
+    
+    
     NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
     return jsonString;
 }
