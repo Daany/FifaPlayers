@@ -63,6 +63,24 @@
     return self;
 }
 
+-(void)resetFilter
+{
+    self.attackWorkRate.selectedSegmentIndex = -1;
+    self.defenseWorkRate.selectedSegmentIndex = -1;
+    self.minBallcontrol.text = @"";
+    self.maxBallcontrol.text = @"";
+    self.minCrossing.text = @"";
+    self.maxCrossing.text = @"";
+    self.minCurve.text = @"";
+    self.maxCurve.text = @"";
+    self.minDribbling.text = @"";
+    self.maxDribbling.text = @"";
+    self.minFinishing.text = @"";
+    self.maxFinishing.text = @"";
+    self.minFreeKicks.text = @"";
+    self.maxFreeKicks.text = @"";
+}
+
 - (NSString *)getSearchString
 {
     NSString *searchString = @"";
@@ -118,6 +136,7 @@
 
     return searchString;
 }
+
 
 
 @end

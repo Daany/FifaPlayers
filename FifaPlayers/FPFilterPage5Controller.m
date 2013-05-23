@@ -49,6 +49,26 @@
     return self;
 }
 
+-(void)resetFilter
+{
+    self.minStamina.text = @"";
+    self.maxStamina.text = @"";
+    self.minStrength.text = @"";
+    self.maxStrength.text = @"";
+    self.minAggression.text = @"";
+    self.maxAggression.text = @"";
+    self.minPositioning.text = @"";
+    self.maxPositioning.text = @"";
+    self.minInterceptions.text = @"";
+    self.maxInterceptions.text = @"";
+    self.minVision.text = @"";
+    self.maxVision.text = @"";
+    self.minGKDiving.text = @"";
+    self.maxGKDiving.text = @"";
+    self.minGKHandling.text = @"";
+    self.maxGKHandling.text = @"";
+}
+
 - (NSString *)getSearchString
 {
     NSString *searchString = @"";

@@ -56,6 +56,10 @@
     return NO;
 }
 
+-(void)resetFilter
+{
+    //To overwrite
+}
 
 - (UILabel *)createLabel:(CGRect)frame andName:(NSString *)name
 {

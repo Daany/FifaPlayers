@@ -35,8 +35,8 @@
         self.minPotential = [self createTextField:CGRectMake(190, 50, 50, 30)];
         self.maxPotential = [self createTextField:CGRectMake(260, 50, 50, 30)];
         self.minAge = [self createTextField:CGRectMake(190, 90, 50, 30)];
-        self.maxAge = [self createTextField:CGRectMake(260, 90, 50, 30)];
-
+        self.maxAge = [self createTextField:CGRectMake(260, 90, 50, 30)
+];
         self.position = [[UISegmentedControl alloc] initWithFrame:CGRectMake(110, 130, 200, 30)];
         [self.position insertSegmentWithTitle:@"GK" atIndex:0 animated:NO];
         [self.position insertSegmentWithTitle:@"DEF" atIndex:1 animated:NO];
@@ -57,6 +57,22 @@
     }
 
     return self;
+}
+
+-(void)resetFilter
+{
+    self.minOverall.text = @"";
+    self.maxOverall.text = @"";
+    self.minPotential.text = @"";
+    self.maxPotential.text = @"";
+    self.minAge.text = @"";
+    self.maxAge.text = @"";
+    self.position.selectedSegmentIndex = -1;
+    self.minWeakFoot.text = @"";
+    self.maxWeakFoot.text = @"";
+    self.foot.selectedSegmentIndex = -1;
+    self.minSkill.text = @"";
+    self.maxSkill.text = @"";    
 }
 
 - (NSString *)getSearchString

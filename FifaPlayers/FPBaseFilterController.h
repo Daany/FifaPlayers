@@ -27,4 +27,6 @@
 
 - (NSString *)getPositionString;
 
+-(void)resetFilter;
+
 @end

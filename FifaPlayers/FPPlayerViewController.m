@@ -71,6 +71,11 @@
     [self.navigationItem setRightBarButtonItem:self.favoriteButton animated:YES];
 }
 
+-(void)viewDidLayoutSubviews
+{
+         self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width * self.numberOfPages, self.scrollView.frame.size.height);
+}
+
 - (void)favorite:(id)obj
 {
     if([self.favoriteProvider playerIsFavorite:self.player])

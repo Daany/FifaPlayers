@@ -27,41 +27,60 @@
 {
     [super viewDidLoad];
 
+    self.viewControllers = [[NSMutableArray alloc] init];
+
     self.provider = [[FPDataProvider alloc]init];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-
-    self.viewControllers = [[NSMutableArray alloc] init];
-    [self.viewControllers addObject:[[FPFilterPage1Controller alloc] initWithFrame:CGRectMake(0, 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height)]];
-    [self.viewControllers addObject:[[FPFilterPage2Controller alloc] initWithFrame:CGRectMake(0, 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height)]];
-    [self.viewControllers addObject:[[FPFilterPage3Controller alloc] initWithFrame:CGRectMake(0, 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height)]];
-    [self.viewControllers addObject:[[FPFilterPage4Controller alloc] initWithFrame:CGRectMake(0, 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height)]];
-    [self.viewControllers addObject:[[FPFilterPage5Controller alloc] initWithFrame:CGRectMake(0, 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height)]];
-    [self.viewControllers addObject:[[FPFilterPage6Controller alloc] initWithFrame:CGRectMake(0, 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height)]];
-
-    [self.progressBar stopAnimating];
     
-    self.numberOfPages = self.viewControllers.count;
-
-    self.pageControl.currentPage = 0;
-    self.pageControl.numberOfPages = self.numberOfPages;
-    self.pageControl.pageIndicatorTintColor = [UIColor grayColor];
-    self.pageControl.currentPageIndicatorTintColor = [UIColor blackColor];
-
-    self.scrollView.pagingEnabled = YES;
-    self.scrollView.delegate = self;
+    if(self.viewControllers.count == 0)
+    {
+        [self.viewControllers addObject:[[FPFilterPage1Controller alloc] initWithFrame:CGRectMake(0, 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height)]];
+        [self.viewControllers addObject:[[FPFilterPage2Controller alloc] initWithFrame:CGRectMake(0, 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height)]];
+        [self.viewControllers addObject:[[FPFilterPage3Controller alloc] initWithFrame:CGRectMake(0, 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height)]];
+        [self.viewControllers addObject:[[FPFilterPage4Controller alloc] initWithFrame:CGRectMake(0, 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height)]];
+        [self.viewControllers addObject:[[FPFilterPage5Controller alloc] initWithFrame:CGRectMake(0, 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height)]];
+        [self.viewControllers addObject:[[FPFilterPage6Controller alloc] initWithFrame:CGRectMake(0, 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height)]];
+        
+        self.numberOfPages = self.viewControllers.count;
+        
+        self.pageControl.currentPage = 0;
+        self.pageControl.numberOfPages = self.numberOfPages;
+        self.pageControl.pageIndicatorTintColor = [UIColor grayColor];
+        self.pageControl.currentPageIndicatorTintColor = [UIColor blackColor];
+        
+        self.scrollView.pagingEnabled = YES;
+        self.scrollView.delegate = self;
+    }
+    
     self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width * self.numberOfPages, self.scrollView.frame.size.height);
     self.scrollView.showsHorizontalScrollIndicator = NO;
     self.scrollView.showsVerticalScrollIndicator = NO;
-
+    
     [self loadScrollViewWithPage:0];
     [self loadScrollViewWithPage:1];
-
+    
+    UIBarButtonItem *reset = [[UIBarButtonItem alloc] initWithTitle:@"Reset" style:UIBarButtonSystemItemCancel target:self action:@selector(resetFilter:)];
+    [self.navigationItem setLeftBarButtonItem:reset];
+    
     UIBarButtonItem *button = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(search:)];
     [self.navigationItem setRightBarButtonItem:button animated:YES];
+}
+
+- (void)viewDidLayoutSubviews
+{
+    //needs to be here, or else the scroll view won't have the correct size on the first page load
+    self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width * self.numberOfPages, self.scrollView.frame.size.height);
+}
+
+-(IBAction)resetFilter:(id)sender
+{
+    for (int i = 0; i < self.viewControllers.count; i++) {
+        [[self.viewControllers objectAtIndex:i] resetFilter];
+    }
 }
 
 - (void)loadScrollViewWithPage:(int)page {
@@ -104,8 +123,7 @@
     [super didReceiveMemoryWarning];
 }
 
-- (IBAction)search:(id)sender
-{
+- (IBAction)search:(id)sender {
     self.progressBar.hidden = NO;
     [self.progressBar startAnimating];
     UIViewController *activeController = [self.viewControllers objectAtIndex:self.pageControl.currentPage];

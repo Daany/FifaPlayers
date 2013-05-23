@@ -49,6 +49,26 @@
     return self;
 }
 
+-(void) resetFilter
+{
+    self.minStandingTackle.text = @"";
+    self.maxStandingTackle.text = @"";
+    self.minVolleys.text = @"";
+    self.maxVolleys.text = @"";
+    self.minAcceleration.text = @"";
+    self.maxAcceleration.text = @"";
+    self.minAgility.text = @"";
+    self.maxAgility.text = @"";
+    self.minBalance.text = @"";
+    self.maxBalance.text = @"";
+    self.minJumping.text = @"";
+    self.maxJumping.text = @"";
+    self.minReactions.text = @"";
+    self.maxReactions.text = @"";
+    self.minSprintSpeed.text = @"";
+    self.maxSprintSpeed.text = @"";
+}
+
 - (NSString *)getSearchString
 {
     NSString *searchString = @"";

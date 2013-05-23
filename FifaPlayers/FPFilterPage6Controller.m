@@ -34,6 +34,16 @@
     return self;
 }
 
+-(void)resetFilter
+{
+    self.minGKKicking.text = @"";
+    self.maxGKKicking.text = @"";
+    self.minGKReflexes.text = @"";
+    self.maxGKReflexes.text = @"";
+    self.minGKPosition.text = @"";
+    self.maxGKPosition.text = @"";
+}
+
 - (NSString *)getSearchString
 {
     NSString *searchString = @"";
