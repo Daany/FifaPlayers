@@ -33,7 +33,7 @@
     textField.borderStyle = UITextBorderStyleRoundedRect;
     textField.font = [UIFont systemFontOfSize:15];
     textField.autocorrectionType = UITextAutocorrectionTypeNo;
-    textField.keyboardType = UIKeyboardTypeDefault;
+    textField.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
     textField.returnKeyType = UIReturnKeyDone;
     textField.clearButtonMode = UITextFieldViewModeWhileEditing;
     textField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
@@ -84,7 +84,10 @@
         int minAge = -1 * [value intValue];
         NSDate *now = [NSDate date];
         NSDate *minDate = [now dateByAddingTimeInterval:(minAge * 365 * 24 * 60 * 60)];
-        searchString = [self createSearchString:searchString forName:name withValue:[formatter stringFromDate:minDate] andComparisation:comparer];
+
+        NSString *dateString = [NSString stringWithFormat:@"'%@'", [formatter stringFromDate:minDate]];
+
+        searchString = [self createSearchString:searchString forName:name withValue:dateString andComparisation:comparer];
     }
 
     return searchString;
