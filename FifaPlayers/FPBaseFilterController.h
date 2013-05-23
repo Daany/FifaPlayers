@@ -13,6 +13,8 @@
 
 @property(nonatomic, strong) UIView *view;
 
+@property(nonatomic, strong) UIButton *doneButton;
+
 - (UITextField *)createTextField:(CGRect)frame;
 
 - (UILabel *)createLabel:(CGRect)frame andName:(NSString *)name;
