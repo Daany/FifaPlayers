@@ -23,13 +23,17 @@
         <!--Search View Controller - Search-->
         <scene sceneID="11">
             <objects>
-                <viewController title="Search" id="2" customClass="FPSearchViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SearchViewController" title="Search" id="2" customClass="FPSearchViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="16">
                         <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="JFh-G3-n4Q">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <activityIndicatorView key="tableFooterView" opaque="NO" contentMode="scaleToFill" style="gray" id="rvw-m1-iAK">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="20"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                </activityIndicatorView>
                             </tableView>
                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="5p3-aH-UVB">
                                 <textInputTraits key="textInputTraits"/>
@@ -48,6 +52,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Search" id="5kM-z8-Xqz"/>
                     <connections>
+                        <outlet property="progressBar" destination="rvw-m1-iAK" id="ENA-rP-JvP"/>
                         <outlet property="searchBar" destination="5p3-aH-UVB" id="GbZ-tN-5fq"/>
                         <outlet property="searchDisplayController" destination="tHF-hM-CQx" id="5vQ-gt-ndr"/>
                         <outlet property="searchPlayerTableview" destination="JFh-G3-n4Q" id="rXx-Ce-oae"/>
@@ -185,7 +190,17 @@
                             <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="7" translatesAutoresizingMaskIntoConstraints="NO" id="iY8-Uc-bSo">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </pageControl>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VUf-ls-8Gd"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VUf-ls-8Gd">
+                                <subviews>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="4la-d3-VyC"/>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="4la-d3-VyC" firstAttribute="centerX" secondItem="VUf-ls-8Gd" secondAttribute="centerX" type="default" id="HQn-F7-0sL"/>
+                                    <constraint firstAttribute="trailing" secondItem="4la-d3-VyC" secondAttribute="trailing" constant="141" id="Nv2-11-87h"/>
+                                    <constraint firstAttribute="bottom" secondItem="4la-d3-VyC" secondAttribute="bottom" constant="373" id="Qvf-2v-PDL"/>
+                                    <constraint firstItem="4la-d3-VyC" firstAttribute="top" secondItem="VUf-ls-8Gd" secondAttribute="top" constant="10" id="cvI-yc-Igl"/>
+                                </constraints>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -201,6 +216,7 @@
                     <navigationItem key="navigationItem" title="Filter" id="1cp-gY-yVH"/>
                     <connections>
                         <outlet property="pageControl" destination="iY8-Uc-bSo" id="Lw2-2V-j0y"/>
+                        <outlet property="progressBar" destination="4la-d3-VyC" id="w5j-vv-2xg"/>
                         <outlet property="scrollView" destination="VUf-ls-8Gd" id="8iL-KD-ozh"/>
                         <segue destination="2" kind="push" identifier="Result" id="Rv3-Eq-l6I"/>
                     </connections>
@@ -260,10 +276,10 @@
             </objects>
             <point key="canvasLocation" x="531" y="-1202"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Tab Bar View Controller-->
         <scene sceneID="15">
             <objects>
-                <tabBarController id="4" sceneMemberID="viewController">
+                <tabBarController id="4" customClass="FPTabBarViewController" sceneMemberID="viewController">
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="5">
                         <rect key="frame" x="0.0" y="431" width="320" height="49"/>
@@ -300,6 +316,7 @@
             <relationships>
                 <relationship kind="action" name="search:"/>
                 <relationship kind="outlet" name="pageControl" candidateClass="UIPageControl"/>
+                <relationship kind="outlet" name="progressBar" candidateClass="UIActivityIndicatorView"/>
                 <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
             </relationships>
         </class>
@@ -323,6 +340,9 @@
             <relationships>
                 <relationship kind="action" name="removeFavorites:"/>
             </relationships>
+        </class>
+        <class className="FPTabBarViewController" superclassName="UITabBarController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FPTabBarViewController.h"/>
         </class>
         <class className="NSLayoutConstraint" superclassName="NSObject">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>

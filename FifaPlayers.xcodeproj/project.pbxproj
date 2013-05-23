@@ -64,12 +64,12 @@
 		F6B7DC7E173D82EB00BF5C65 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F6B7DC7D173D82EB00BF5C65 /* Default@2x.png */; };
 		F6B7DC80173D82EB00BF5C65 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F6B7DC7F173D82EB00BF5C65 /* Default-568h@2x.png */; };
 		F6B7DC83173D82EB00BF5C65 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F6B7DC81173D82EB00BF5C65 /* MainStoryboard_iPhone.storyboard */; };
-		F6B7DC86173D82EB00BF5C65 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F6B7DC84173D82EB00BF5C65 /* MainStoryboard_iPad.storyboard */; };
 		F6B7DC89173D82EB00BF5C65 /* FPSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6B7DC88173D82EB00BF5C65 /* FPSearchViewController.m */; };
 		F6B7DC90173D82EB00BF5C65 /* FPFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6B7DC8F173D82EB00BF5C65 /* FPFilterViewController.m */; };
 		F6B7DC9C173D8B7D00BF5C65 /* FPFavoritesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6B7DC9B173D8B7D00BF5C65 /* FPFavoritesViewController.m */; };
 		F6B7DC9F173D8C6800BF5C65 /* FPSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6B7DC9E173D8C6800BF5C65 /* FPSettingsViewController.m */; };
 		F6B7DCB2173D9C2500BF5C65 /* FPPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6B7DCB1173D9C2400BF5C65 /* FPPlayerViewController.m */; };
+		F6ED473C174E531600CB32AB /* FPTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6ED473B174E531600CB32AB /* FPTabBarViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -165,7 +165,6 @@
 		F6B7DC7D173D82EB00BF5C65 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		F6B7DC7F173D82EB00BF5C65 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		F6B7DC82173D82EB00BF5C65 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
-		F6B7DC85173D82EB00BF5C65 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
 		F6B7DC87173D82EB00BF5C65 /* FPSearchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FPSearchViewController.h; sourceTree = "<group>"; };
 		F6B7DC88173D82EB00BF5C65 /* FPSearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FPSearchViewController.m; sourceTree = "<group>"; };
 		F6B7DC8E173D82EB00BF5C65 /* FPFilterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FPFilterViewController.h; sourceTree = "<group>"; };
@@ -176,6 +175,8 @@
 		F6B7DC9E173D8C6800BF5C65 /* FPSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FPSettingsViewController.m; sourceTree = "<group>"; };
 		F6B7DCB0173D9C2400BF5C65 /* FPPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FPPlayerViewController.h; sourceTree = "<group>"; };
 		F6B7DCB1173D9C2400BF5C65 /* FPPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FPPlayerViewController.m; sourceTree = "<group>"; };
+		F6ED473A174E531600CB32AB /* FPTabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FPTabBarViewController.h; sourceTree = "<group>"; };
+		F6ED473B174E531600CB32AB /* FPTabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FPTabBarViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -286,6 +287,7 @@
 		F69CF7D417450697005AC999 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				2C2283896D170D1DD1C83E42 /* PlayerControllers */,
 				5405262F17469C880002AEED /* FilterControllers */,
 				F6B7DC87173D82EB00BF5C65 /* FPSearchViewController.h */,
 				F6B7DC88173D82EB00BF5C65 /* FPSearchViewController.m */,
@@ -300,7 +302,8 @@
 				F6B7DCB1173D9C2400BF5C65 /* FPPlayerViewController.m */,
 				2C2283CE7773323B1531DB63 /* FPResultViewController.m */,
 				2C2281E1E2E824ECA746BF79 /* FPResultViewController.h */,
-				2C2283896D170D1DD1C83E42 /* PlayerControllers */,
+				F6ED473A174E531600CB32AB /* FPTabBarViewController.h */,
+				F6ED473B174E531600CB32AB /* FPTabBarViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -393,7 +396,6 @@
 				F6B7DC78173D82EB00BF5C65 /* FPAppDelegate.h */,
 				F6B7DC79173D82EB00BF5C65 /* FPAppDelegate.m */,
 				F6B7DC81173D82EB00BF5C65 /* MainStoryboard_iPhone.storyboard */,
-				F6B7DC84173D82EB00BF5C65 /* MainStoryboard_iPad.storyboard */,
 				F6B7DC70173D82EA00BF5C65 /* Supporting Files */,
 				2C228B66A1E7A4499DC7C259 /* Categories */,
 				2C228528F4B85510A94C8B09 /* Assets */,
@@ -472,7 +474,6 @@
 				F6B7DC7E173D82EB00BF5C65 /* Default@2x.png in Resources */,
 				F6B7DC80173D82EB00BF5C65 /* Default-568h@2x.png in Resources */,
 				F6B7DC83173D82EB00BF5C65 /* MainStoryboard_iPhone.storyboard in Resources */,
-				F6B7DC86173D82EB00BF5C65 /* MainStoryboard_iPad.storyboard in Resources */,
 				2C228A9B21BEEC22A8151290 /* Settings.png in Resources */,
 				2C22894577E4FFA5741553A7 /* Settings@2x.png in Resources */,
 				2C2288A7B93041A02ABDF080 /* Search.png in Resources */,
@@ -536,6 +537,7 @@
 				2C2285B59087E7E248C4C293 /* FPPlayerPage6Controller.m in Sources */,
 				2C2283501A74704F2772AE5C /* FPFavoriteProvider.m in Sources */,
 				2C2280E4362C99398FC54487 /* MBProgressHUD.m in Sources */,
+				F6ED473C174E531600CB32AB /* FPTabBarViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -556,14 +558,6 @@
 				F6B7DC82173D82EB00BF5C65 /* en */,
 			);
 			name = MainStoryboard_iPhone.storyboard;
-			sourceTree = "<group>";
-		};
-		F6B7DC84173D82EB00BF5C65 /* MainStoryboard_iPad.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				F6B7DC85173D82EB00BF5C65 /* en */,
-			);
-			name = MainStoryboard_iPad.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -628,6 +622,7 @@
 				GCC_PREFIX_HEADER = "FifaPlayers/FifaPlayers-Prefix.pch";
 				INFOPLIST_FILE = "FifaPlayers/FifaPlayers-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -639,6 +634,7 @@
 				GCC_PREFIX_HEADER = "FifaPlayers/FifaPlayers-Prefix.pch";
 				INFOPLIST_FILE = "FifaPlayers/FifaPlayers-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

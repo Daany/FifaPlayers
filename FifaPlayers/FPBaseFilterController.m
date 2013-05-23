@@ -47,7 +47,12 @@
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    [textField resignFirstResponder];
+    @try {
+        [textField resignFirstResponder];
+    }
+    @catch (NSException *exception) {
+        // resignFirstResponder already called!
+    }
     return NO;
 }
 

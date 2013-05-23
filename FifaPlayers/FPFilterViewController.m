@@ -42,6 +42,8 @@
     [self.viewControllers addObject:[[FPFilterPage5Controller alloc] initWithFrame:CGRectMake(0, 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height)]];
     [self.viewControllers addObject:[[FPFilterPage6Controller alloc] initWithFrame:CGRectMake(0, 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height)]];
 
+    [self.progressBar stopAnimating];
+    
     self.numberOfPages = self.viewControllers.count;
 
     self.pageControl.currentPage = 0;
@@ -104,6 +106,32 @@
 
 - (IBAction)search:(id)sender
 {
+    self.progressBar.hidden = NO;
+    [self.progressBar startAnimating];
+    UIViewController *activeController = [self.viewControllers objectAtIndex:self.pageControl.currentPage];
+    
+    UIActivityIndicatorView *progressBar = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    
+    progressBar.center = CGPointMake(activeController.view.frame.size.width / 2, activeController.view.frame.size.height / 2);
+
+    [activeController.view addSubview:progressBar];
+
+    [progressBar startAnimating];
+    
+    @try {
+    
+    @try {
+        for(UIView *subView in activeController.view.subviews) {
+            if([subView conformsToProtocol:@protocol(UITextInputTraits)]) {
+                UITextField *textField = (UITextField *)subView ;
+                [textField resignFirstResponder];
+            }
+        }
+    }
+    @catch (NSException *exception) {
+        // resignFirstResponder already called!
+    }
+    
     if(self.requestRunning) return;
     self.requestRunning = YES;
 
@@ -120,8 +148,17 @@
     {
         self.requestRunning = false;
         self.foundPlayers = array;
+        
+        //FPSearchViewController *searchViewController = [[self.storyboard instantiateViewControllerWithIdentifier:@"SearchViewController"] copy];
+        //[self.navigationController pushViewController:searchViewController animated:YES];
         [self performSegueWithIdentifier:@"Result" sender:self];
+        
+        [progressBar removeFromSuperview];
     }];
+    }
+    @catch (NSException *exception) {
+        [progressBar removeFromSuperview];
+    }
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

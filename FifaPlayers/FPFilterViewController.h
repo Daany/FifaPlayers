@@ -19,6 +19,8 @@
 @property(nonatomic, strong) NSMutableArray *viewControllers;
 @property(nonatomic, strong) FPDataProvider *provider;
 
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *progressBar;
+
 @property(nonatomic, strong) NSMutableArray *foundPlayers;
 
 @property(nonatomic) BOOL requestRunning;

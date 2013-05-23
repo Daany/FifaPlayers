@@ -19,26 +19,20 @@
 
 @implementation FPSearchViewController
 
-// Member variables
-bool isLocalFilter;
-bool isSearching;
-bool onWebRequest;
-bool makeUpdates = YES;
-NSMutableArray *filteredList;
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
 	// Do any additional setup after loading the view, typically from a nib.
     
+    self.progressBar.hidden = YES;
     self.searchPlayerTableview.dataSource = self;
     self.searchPlayerTableview.delegate = self;
     self.searchBar.delegate = self;
-    
-    isSearching = NO;
-    if(filteredList == NULL)
+    self.isSearching = NO;
+    if(self.filteredList == NULL)
     {
-        filteredList = [[NSMutableArray alloc]init];
+        self.filteredList = [[NSMutableArray alloc]init];
     }
     else
     {
@@ -56,68 +50,80 @@ NSMutableArray *filteredList;
             textField.delegate = self;
             textField.clearButtonMode = UITextFieldViewModeWhileEditing;
             textField.placeholder = @"Search player by name or club...";
+            textField.enablesReturnKeyAutomatically = NO;
+            break;
         }
     }
 }
 
--(void)search
+-(void)viewWillAppear:(BOOL)animated
 {
-
+    if (self.navigationController.viewControllers.count == 1)
+    {
+        self.makeUpdates = YES;
+    }
+    else
+    {
+        self.makeUpdates = NO;
+    }
 }
-
 
 - (void)setPLayerList:(NSMutableArray *)list
 {
     self.players = [NSArray arrayWithArray:list];
-    filteredList = list;
+    self.filteredList = list;
 }
 
 - (void)disableUpdates
 {
-    makeUpdates = NO;
+    self.makeUpdates = NO;
 }
 
 -(void)filterListForSearchText:(NSString *)searchText
 {
-    if (searchText.length < 3 && makeUpdates)
+    if (searchText.length < 3 && self.makeUpdates)
     {
         // reset local filter
-        isLocalFilter = false;
+        self.isLocalFilter = false;
         
         // clear list
-        filteredList = nil;
-        [self.searchPlayerTableview reloadData];
+        self.filteredList = nil;
+        [self.searchPlayerTableview reloadData];    
     }
     
-    else if (searchText.length == 3 && isLocalFilter == false && makeUpdates)
+    else if (searchText.length == 3 && self.isLocalFilter == false && self.makeUpdates)
     {
-        isLocalFilter = true;
-        onWebRequest = YES;
+        self.progressBar.hidden = NO;
+        [self.progressBar startAnimating];
+        self.isLocalFilter = true;
+        self.onWebRequest = YES;
         // Load data from webserver
         FPDataProvider *provider = [[FPDataProvider alloc]init];
         [provider SearchPlayer:searchText withResponseMethod:^(NSMutableArray *playersList)
          {
              // update data
              self.players = playersList;
-             filteredList = [NSMutableArray arrayWithArray:playersList];
+             self.filteredList = [NSMutableArray arrayWithArray:playersList];
              
              [self.searchPlayerTableview reloadData];
              
              // reset on web request, so filter is allowed again
-             onWebRequest = NO;
+             self.onWebRequest = NO;
              
              // filter if user already typed more letters
              if (self.searchBar.text.length > 3)
              {
                  [self filterListForSearchText:self.searchBar.text];
              }
+             [self.progressBar stopAnimating];
+             self.progressBar.hidden = YES;
          }];
     }
     
     else
     {
         // Filter data in list
-        [filteredList removeAllObjects]; //clears the array from all the string objects it might contain from the previous searches
+        [self.filteredList removeAllObjects]; //clears the array from all the string objects it might contain from the previous searches
         
         for(FPPlayerBase * player in self.players)
         {
@@ -127,7 +133,7 @@ NSMutableArray *filteredList;
             
             if (fullNameRange.location != NSNotFound || clubRange.location != NSNotFound)
             {
-                [filteredList addObject:player];
+                [self.filteredList addObject:player];
             }
         }
         [self.searchPlayerTableview reloadData];
@@ -149,7 +155,7 @@ NSMutableArray *filteredList;
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     // Return the number of rows in the section.
     // Usually the number of items in your array (the one that holds your list)
-    return filteredList.count;
+    return self.filteredList.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -164,10 +170,10 @@ NSMutableArray *filteredList;
     }
     
     // Configure the cell...
-    if ([filteredList count])
+    if ([self.filteredList count])
     {
         //If the user is searching, use the list in our filteredList array.
-        cell.textLabel.text = ((FPPlayerBase*)[filteredList objectAtIndex:indexPath.row]).Fullname;
+        cell.textLabel.text = ((FPPlayerBase*)[self.filteredList objectAtIndex:indexPath.row]).Fullname;
     }
   
     return cell;
@@ -227,8 +233,7 @@ NSMutableArray *filteredList;
      // Pass the selected object to the new view controller.
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
-
-    self.selectedPlayer = [filteredList objectAtIndex:indexPath.row];
+    self.selectedPlayer = [self.filteredList objectAtIndex:indexPath.row];
 
     [self performSegueWithIdentifier:@"Detail" sender:self];
 }
@@ -254,7 +259,7 @@ NSMutableArray *filteredList;
 
 -(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {   
-    if (searchText.length > 0 && onWebRequest == NO)
+    if (searchText.length > 0 && self.onWebRequest == NO)
     {
         [self filterListForSearchText:searchText];
     }
@@ -282,13 +287,19 @@ NSMutableArray *filteredList;
 
 -(void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
 {
-    isSearching = YES;
+    self.isSearching = YES;
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [textField resignFirstResponder];
     return NO;
+}
+
+-(BOOL)textFieldShouldClear:(UITextField *)textField
+{
+    [self filterListForSearchText:@""];
+    return YES;
 }
 
 -(void)doneButtonClicked:(id)sender

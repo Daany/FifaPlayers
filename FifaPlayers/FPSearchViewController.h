@@ -18,6 +18,16 @@
 
 @property(nonatomic, strong) id selectedPlayer;
 
+@property(nonatomic, strong) NSMutableArray *filteredList;
+
+@property(nonatomic) bool isSearching;
+
+@property(nonatomic) bool makeUpdates;
+
+@property(nonatomic) bool isLocalFilter;
+
+@property(nonatomic) bool onWebRequest;
+
 - (void)setPLayerList:(NSMutableArray *)list;
 
 - (void)disableUpdates;
