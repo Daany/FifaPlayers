@@ -45,8 +45,7 @@ NSMutableArray *filteredList;
 
         [self.searchPlayerTableview reloadData];
     }
-    self.progressBar.hidesWhenStopped = YES;
-    self.progressBar.hidden = YES;
+    
     self.searchBar.autocorrectionType = UITextAutocorrectionTypeNo;
     
     // set returnkey to done-button
@@ -55,6 +54,8 @@ NSMutableArray *filteredList;
             UITextField *textField = (UITextField *)subView ;
             textField.returnKeyType = UIReturnKeyDone;
             textField.delegate = self;
+            textField.clearButtonMode = UITextFieldViewModeWhileEditing;
+            textField.placeholder = @"Search player by name or club...";
         }
     }
 }
@@ -78,9 +79,6 @@ NSMutableArray *filteredList;
 
 -(void)filterListForSearchText:(NSString *)searchText
 {
-    self.progressBar.hidden = false;
-   	[self.progressBar startAnimating];
-    
     if (searchText.length < 3 && makeUpdates)
     {
         // reset local filter
@@ -100,7 +98,6 @@ NSMutableArray *filteredList;
         [provider SearchPlayer:searchText withResponseMethod:^(NSMutableArray *playersList)
          {
              // update data
-             [self.progressBar stopAnimating];
              self.players = playersList;
              filteredList = [NSMutableArray arrayWithArray:playersList];
              

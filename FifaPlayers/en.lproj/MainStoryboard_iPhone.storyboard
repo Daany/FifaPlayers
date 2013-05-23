@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="11G63b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="12C54" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="4">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1930"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller - Search-->
@@ -28,7 +28,6 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="JOE-s2-TIB"/>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="JFh-G3-n4Q">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
@@ -41,18 +40,14 @@
                             <constraint firstItem="JFh-G3-n4Q" firstAttribute="bottom" secondItem="16" secondAttribute="bottom" type="default" id="6gF-Um-PFH"/>
                             <constraint firstItem="JFh-G3-n4Q" firstAttribute="top" secondItem="5p3-aH-UVB" secondAttribute="bottom" type="default" id="8Oh-Yo-zp1"/>
                             <constraint firstItem="5p3-aH-UVB" firstAttribute="leading" secondItem="16" secondAttribute="leading" type="default" id="Cxz-nF-3sZ"/>
-                            <constraint firstItem="JOE-s2-TIB" firstAttribute="top" secondItem="16" secondAttribute="top" constant="240" id="MPc-8i-2pF"/>
-                            <constraint firstItem="JOE-s2-TIB" firstAttribute="trailing" secondItem="16" secondAttribute="trailing" type="default" id="bjo-5i-4b5"/>
                             <constraint firstItem="5p3-aH-UVB" firstAttribute="trailing" secondItem="16" secondAttribute="trailing" type="default" id="dAT-dO-g6l"/>
                             <constraint firstItem="5p3-aH-UVB" firstAttribute="top" secondItem="16" secondAttribute="top" type="default" id="oTa-O8-0Wv"/>
-                            <constraint firstItem="JOE-s2-TIB" firstAttribute="leading" secondItem="16" secondAttribute="leading" type="default" id="tpl-tO-t2x"/>
                             <constraint firstItem="JFh-G3-n4Q" firstAttribute="leading" secondItem="16" secondAttribute="leading" type="default" id="x9a-eV-dry"/>
                             <constraint firstItem="JFh-G3-n4Q" firstAttribute="trailing" secondItem="16" secondAttribute="trailing" type="default" id="zZ3-S0-m5c"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Search" id="5kM-z8-Xqz"/>
                     <connections>
-                        <outlet property="progressBar" destination="JOE-s2-TIB" id="7vg-AA-53Q"/>
                         <outlet property="searchBar" destination="5p3-aH-UVB" id="GbZ-tN-5fq"/>
                         <outlet property="searchDisplayController" destination="tHF-hM-CQx" id="5vQ-gt-ndr"/>
                         <outlet property="searchPlayerTableview" destination="JFh-G3-n4Q" id="rXx-Ce-oae"/>
@@ -340,6 +335,6 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="Rv3-Eq-l6I"/>
-        <segue reference="h9n-0Q-L92"/>
+        <segue reference="hbp-sv-TwF"/>
     </inferredMetricsTieBreakers>
 </document>

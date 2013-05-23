@@ -40,7 +40,6 @@ NSMutableArray *_responseData;
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON)
     {
-<<<<<<< HEAD
         FPPlayer *player = [[FPPlayer alloc] init];
         player.Fullname = [JSON objectForKey:@"Fullname"];
         player.PlayerId = [JSON objectForKey:@"PlayerId"];
@@ -104,10 +103,6 @@ NSMutableArray *_responseData;
         player.Foot  = [JSON objectForKey:@"Foot"];
         player.Positioning = [[JSON objectForKey:@"Positioning"] intValue];
 
-=======
-        FPPlayer *player = [self JSONToPlayer:JSON];
-        
->>>>>>> Favorites data provider
         responseMethod(player);
     }
                                          
@@ -117,123 +112,123 @@ NSMutableArray *_responseData;
     [operation start];
     
 }
-
--(FPPlayer *) JSONToPlayer:(id)JSON
-{
-    FPPlayer *player = [[FPPlayer alloc] init];
-    player.Fullname = [JSON objectForKey:@"Fullname"];
-    player.PlayerId = [JSON objectForKey:@"PlayerId"];
-    player.Club = [JSON objectForKey:@"Club"];
-    player.Position = [JSON objectForKey:@"Position"];
-    player.Potential = [[JSON objectForKey:@"Potential"] intValue];
-    player.TotalSkill = [[JSON objectForKey:@"TotalSkill"] intValue];
-    player.BirthDate = [self convertToDate:[JSON objectForKey:@"BirthDate"]];
-    
-    player.Acceleration = [[JSON objectForKey:@"Acceleration"] intValue];
-    player.Aggression = [[JSON objectForKey:@"Aggression"] intValue];
-    player.Agility = [[JSON objectForKey:@"Agility"] intValue];
-    player.AttackWorkrate = [JSON objectForKey:@"AttackWorkrate"];
-    player.Balance = [[JSON objectForKey:@"Balance"]intValue];
-    player.BallControl = [[JSON objectForKey:@"BallControl"] intValue];
-    player.ContractExpireDate = [self convertToDate:[JSON objectForKey:@"ContractExpireDate"]];
-    player.Crossing = [[JSON objectForKey:@"Crossing"] intValue];
-    player.Curve = [[JSON objectForKey:@"Curve"] intValue];
-    player.DefenseWorkrate = [JSON objectForKey:@"DefenseWorkrate"];
-    player.Dribbling = [[JSON objectForKey:@"Dribbling"]intValue];
-    player.Finishing = [[JSON objectForKey:@"Finishing"] intValue];
-    player.FreeKicks = [[JSON objectForKey:@"FreeKicks"] intValue];
-    player.GKDiving = [[JSON objectForKey:@"GKDiving"] intValue];
-    player.GKHandling = [[JSON objectForKey:@"GKHandling"] intValue];
-    player.GKKicking = [[JSON objectForKey:@"GKKicking"] intValue];
-    player.GKPosition = [[JSON objectForKey:@"GKPosition"]intValue];
-    player.GKReflexes = [[JSON objectForKey:@"GKReflexes"]intValue];
-    player.GKSpeed = [[JSON objectForKey:@"GKSpeed"] intValue];
-    player.Heading =[[JSON objectForKey:@"Heading"] intValue];
-    player.Height = [JSON objectForKey:@"Height"];
-    player.Interceptions = [[JSON objectForKey:@"Interceptions"] intValue];
-    player.JoinedClub = [self convertToDate:[JSON objectForKey:@"JoinedClub"]];
-    player.Jumping = [[JSON objectForKey:@"Jumping"] intValue];
-    player.LongPassing = [[JSON objectForKey:@"LongPassing"] intValue];
-    player.LongShots = [[JSON objectForKey:@"LongShots"] intValue];
-    player.Marking = [[JSON objectForKey:@"Marking"] intValue];
-    player.Penalties = [[JSON objectForKey:@"Penalties"] intValue];
-    player.PositionString = [JSON objectForKey:@"PositionString"];
-    player.Reactions = [[JSON objectForKey:@"Reaction"] intValue];
-    player.ShortPassing = [[JSON objectForKey:@"ShortPassing"] intValue];
-    player.ShotPower = [[JSON objectForKey:@"ShotPower"] intValue];
-    player.SkillMoves = [[JSON objectForKey:@"SkillMoves"] intValue];
-    player.SlidingTackle = [[JSON objectForKey:@"SlidingTackle"] intValue];
-    player.SprintSpeed = [[JSON objectForKey:@"SprintSpeed"] intValue];
-    player.Stamina = [[JSON objectForKey:@"Stamina"] intValue];
-    player.StandingTackle = [[JSON objectForKey:@"StandingTackle"] intValue];
-    player.Strength = [[JSON objectForKey:@"Strength"] intValue];
-    player.TraitsString = [JSON objectForKey:@"TraitsString"];
-    player.Vision = [[JSON objectForKey:@"Vision"] intValue];
-    player.Volleys = [[JSON objectForKey:@"Volleys"] intValue];
-    player.WeakFoot = [[JSON objectForKey:@"WeakFoot"] intValue];
-    player.Weight = [JSON objectForKey:@"Weight"];
-    
-    return player;
-}
-
--(NSString *)PlayerToJSON:(FPPlayer*) player
-{
-    NSOutputStream *outputStream = [[NSOutputStream alloc]init];
-    NSError *error = nil;
-    [NSJSONSerialization writeJSONObject:player toStream:outputStream options:0 error:&error];
-    
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:outputStream options:NSJSONWritingPrettyPrinted error:&error];
-    
-    
-    NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-    return jsonString;
-}
-
--(NSMutableArray*)GetFavoritePlayers
-{
-    if (self.favoritePlayers == nil)
-    {
-        self.favoritePlayers = [[NSMutableArray alloc]init];
-        
-        NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-        NSArray *playerJSONs = [prefs objectForKey:@"favorites"];
-        for (int i= 0; i < playerJSONs.count; i++) {
-            FPPlayer *player = [self JSONToPlayer:[playerJSONs objectAtIndex:i]];
-            [self.favoritePlayers addObject:player];
-        }
-    }
-    
-    return self.favoritePlayers;
-}
-
--(void)AddToFavorite:(FPPlayer *) player
-{
-    NSMutableArray *favorites = [self GetFavoritePlayers];
-
-    if (player != nil)
-    {
-        [favorites addObject:[self PlayerToJSON:player]];
-    }
-    
-    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-    [prefs setObject:favorites forKey:@"favorites"];
-}
-
--(void)RemoveFromFavorites:(NSString *)playerId
-{
-    NSMutableArray *favoritePlayers = [self GetFavoritePlayers];
-    
-    for (int i = 0; i < favoritePlayers.count; i++) {
-        if ([[favoritePlayers objectAtIndex:i] PlayerId] == playerId)
-        {
-            [favoritePlayers removeObjectAtIndex:i];
-            break;
-        }
-    }
-    
-    //store favorites locally
-    [self AddToFavorite:nil];
-}
+//
+//-(FPPlayer *) JSONToPlayer:(id)JSON
+//{
+//    FPPlayer *player = [[FPPlayer alloc] init];
+//    player.Fullname = [JSON objectForKey:@"Fullname"];
+//    player.PlayerId = [JSON objectForKey:@"PlayerId"];
+//    player.Club = [JSON objectForKey:@"Club"];
+//    player.Position = [JSON objectForKey:@"Position"];
+//    player.Potential = [[JSON objectForKey:@"Potential"] intValue];
+//    player.TotalSkill = [[JSON objectForKey:@"TotalSkill"] intValue];
+//    player.BirthDate = [self convertToDate:[JSON objectForKey:@"BirthDate"]];
+//    
+//    player.Acceleration = [[JSON objectForKey:@"Acceleration"] intValue];
+//    player.Aggression = [[JSON objectForKey:@"Aggression"] intValue];
+//    player.Agility = [[JSON objectForKey:@"Agility"] intValue];
+//    player.AttackWorkrate = [JSON objectForKey:@"AttackWorkrate"];
+//    player.Balance = [[JSON objectForKey:@"Balance"]intValue];
+//    player.BallControl = [[JSON objectForKey:@"BallControl"] intValue];
+//    player.ContractExpireDate = [self convertToDate:[JSON objectForKey:@"ContractExpireDate"]];
+//    player.Crossing = [[JSON objectForKey:@"Crossing"] intValue];
+//    player.Curve = [[JSON objectForKey:@"Curve"] intValue];
+//    player.DefenseWorkrate = [JSON objectForKey:@"DefenseWorkrate"];
+//    player.Dribbling = [[JSON objectForKey:@"Dribbling"]intValue];
+//    player.Finishing = [[JSON objectForKey:@"Finishing"] intValue];
+//    player.FreeKicks = [[JSON objectForKey:@"FreeKicks"] intValue];
+//    player.GKDiving = [[JSON objectForKey:@"GKDiving"] intValue];
+//    player.GKHandling = [[JSON objectForKey:@"GKHandling"] intValue];
+//    player.GKKicking = [[JSON objectForKey:@"GKKicking"] intValue];
+//    player.GKPosition = [[JSON objectForKey:@"GKPosition"]intValue];
+//    player.GKReflexes = [[JSON objectForKey:@"GKReflexes"]intValue];
+//    player.GKSpeed = [[JSON objectForKey:@"GKSpeed"] intValue];
+//    player.Heading =[[JSON objectForKey:@"Heading"] intValue];
+//    player.Height = [JSON objectForKey:@"Height"];
+//    player.Interceptions = [[JSON objectForKey:@"Interceptions"] intValue];
+//    player.JoinedClub = [self convertToDate:[JSON objectForKey:@"JoinedClub"]];
+//    player.Jumping = [[JSON objectForKey:@"Jumping"] intValue];
+//    player.LongPassing = [[JSON objectForKey:@"LongPassing"] intValue];
+//    player.LongShots = [[JSON objectForKey:@"LongShots"] intValue];
+//    player.Marking = [[JSON objectForKey:@"Marking"] intValue];
+//    player.Penalties = [[JSON objectForKey:@"Penalties"] intValue];
+//    player.PositionString = [JSON objectForKey:@"PositionString"];
+//    player.Reactions = [[JSON objectForKey:@"Reaction"] intValue];
+//    player.ShortPassing = [[JSON objectForKey:@"ShortPassing"] intValue];
+//    player.ShotPower = [[JSON objectForKey:@"ShotPower"] intValue];
+//    player.SkillMoves = [[JSON objectForKey:@"SkillMoves"] intValue];
+//    player.SlidingTackle = [[JSON objectForKey:@"SlidingTackle"] intValue];
+//    player.SprintSpeed = [[JSON objectForKey:@"SprintSpeed"] intValue];
+//    player.Stamina = [[JSON objectForKey:@"Stamina"] intValue];
+//    player.StandingTackle = [[JSON objectForKey:@"StandingTackle"] intValue];
+//    player.Strength = [[JSON objectForKey:@"Strength"] intValue];
+//    player.TraitsString = [JSON objectForKey:@"TraitsString"];
+//    player.Vision = [[JSON objectForKey:@"Vision"] intValue];
+//    player.Volleys = [[JSON objectForKey:@"Volleys"] intValue];
+//    player.WeakFoot = [[JSON objectForKey:@"WeakFoot"] intValue];
+//    player.Weight = [JSON objectForKey:@"Weight"];
+//    
+//    return player;
+//}
+//
+//-(NSString *)PlayerToJSON:(FPPlayer*) player
+//{
+//    NSOutputStream *outputStream = [[NSOutputStream alloc]init];
+//    NSError *error = nil;
+//    [NSJSONSerialization writeJSONObject:player toStream:outputStream options:0 error:&error];
+//    
+//    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:outputStream options:NSJSONWritingPrettyPrinted error:&error];
+//    
+//    
+//    NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+//    return jsonString;
+//}
+//
+//-(NSMutableArray*)GetFavoritePlayers
+//{
+//    if (self.favoritePlayers == nil)
+//    {
+//        self.favoritePlayers = [[NSMutableArray alloc]init];
+//        
+//        NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+//        NSArray *playerJSONs = [prefs objectForKey:@"favorites"];
+//        for (int i= 0; i < playerJSONs.count; i++) {
+//            FPPlayer *player = [self JSONToPlayer:[playerJSONs objectAtIndex:i]];
+//            [self.favoritePlayers addObject:player];
+//        }
+//    }
+//    
+//    return self.favoritePlayers;
+//}
+//
+//-(void)AddToFavorite:(FPPlayer *) player
+//{
+//    NSMutableArray *favorites = [self GetFavoritePlayers];
+//
+//    if (player != nil)
+//    {
+//        [favorites addObject:[self PlayerToJSON:player]];
+//    }
+//    
+//    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+//    [prefs setObject:favorites forKey:@"favorites"];
+//}
+//
+//-(void)RemoveFromFavorites:(NSString *)playerId
+//{
+//    NSMutableArray *favoritePlayers = [self GetFavoritePlayers];
+//    
+//    for (int i = 0; i < favoritePlayers.count; i++) {
+//        if ([[favoritePlayers objectAtIndex:i] PlayerId] == playerId)
+//        {
+//            [favoritePlayers removeObjectAtIndex:i];
+//            break;
+//        }
+//    }
+//    
+//    //store favorites locally
+//    [self AddToFavorite:nil];
+//}
 
 -(void) GetPlayersByUrl:(NSString*) strUrl withResponseMethod:(void (^)(NSMutableArray *players))responseMethod
 {

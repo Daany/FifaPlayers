@@ -75,7 +75,6 @@
 {
     if([self.favoriteProvider playerIsFavorite:self.player])
     {
-<<<<<<< HEAD
         [self.favoriteProvider removeFromFavorite:self.player];
         self.favoriteButton.image = [UIImage imageNamed:@"FavoriteDisabled.png"];
     }
@@ -83,23 +82,7 @@
     {
         [self.favoriteProvider addToFavorite:self.player];
         self.favoriteButton.image = [UIImage imageNamed:@"FavoriteEnabled.png"];
-=======
         
-        self.navigationItem.title = player.Fullname;
-        FPDataProvider *provider = [[FPDataProvider alloc]init];
-        [provider GetPlayerByPlayerbase:player withResponseMethod:^(FPPlayer *fullPlayer)
-        {
-            currentPlayer = fullPlayer;
-            
-            [[[FPDataProvider alloc]init] AddToFavorite:fullPlayer];
-            
-            FPPlayer *favoritedPlayer = [[[[FPDataProvider alloc]init]GetFavoritePlayers] objectAtIndex:0];
-            
-            self.lblClub.text = fullPlayer.Club;
-        }];
-        
-        // Load full Player
->>>>>>> bla
     }
 }
 

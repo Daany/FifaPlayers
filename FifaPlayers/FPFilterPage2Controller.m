@@ -28,16 +28,22 @@
         [self createLabel:CGRectMake(10, 250, 140, 30) andName:@"Finishing"];
         [self createLabel:CGRectMake(10, 290, 140, 30) andName:@"FreeKicks"];
 
-        self.attackWorkRate = [[UISegmentedControl alloc] initWithFrame:CGRectMake(160, 10, 150, 30)];
+        self.attackWorkRate = [[UISegmentedControl alloc] initWithFrame:CGRectMake(150, 10, 165, 30)];
         [self.attackWorkRate insertSegmentWithTitle:@"Low" atIndex:0 animated:NO];
         [self.attackWorkRate insertSegmentWithTitle:@"Medium" atIndex:1 animated:NO];
         [self.attackWorkRate insertSegmentWithTitle:@"High" atIndex:2 animated:NO];
+        [self.attackWorkRate setWidth:45 forSegmentAtIndex:0];
+        [self.attackWorkRate setWidth:75 forSegmentAtIndex:1];
+        [self.attackWorkRate setWidth:45 forSegmentAtIndex:2];
         [self.view addSubview:self.attackWorkRate];
 
-        self.defenseWorkRate = [[UISegmentedControl alloc] initWithFrame:CGRectMake(160, 50, 150, 30)];
+        self.defenseWorkRate = [[UISegmentedControl alloc] initWithFrame:CGRectMake(150, 50, 165, 30)];
         [self.defenseWorkRate insertSegmentWithTitle:@"Low" atIndex:0 animated:NO];
         [self.defenseWorkRate insertSegmentWithTitle:@"Medium" atIndex:1 animated:NO];
         [self.defenseWorkRate insertSegmentWithTitle:@"High" atIndex:2 animated:NO];
+        [self.defenseWorkRate setWidth:45 forSegmentAtIndex:0];
+        [self.defenseWorkRate setWidth:75 forSegmentAtIndex:1];
+        [self.defenseWorkRate setWidth:45 forSegmentAtIndex:2];
         [self.view addSubview:self.defenseWorkRate];
 
         self.minBallcontrol = [self createTextField:CGRectMake(190, 90, 50, 30)];

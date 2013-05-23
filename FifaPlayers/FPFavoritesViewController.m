@@ -7,14 +7,10 @@
 //
 
 #import "FPFavoritesViewController.h"
-<<<<<<< HEAD
 #import "FPFavoriteProvider.h"
 #import "FPPlayerBase.h"
 #import "FPPlayerViewController.h"
-=======
-#import "FPSearchViewController.h"
-#import "FPDataProvider.h"
->>>>>>> Favorites data provider
+
 
 @interface FPFavoritesViewController ()
 
@@ -67,7 +63,6 @@
 
 -(NSIndexPath*)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-<<<<<<< HEAD
     return indexPath;
 }
 
@@ -77,24 +72,18 @@
 }
 
 // Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-=======
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-        self.foundPlayers = [[[FPDataProvider alloc]init] GetFavoritePlayers];
-        [self performSegueWithIdentifier:@"Result" sender:self];
-        
->>>>>>> Favorites data provider
-    }
-}
+//- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    if (editingStyle == UITableViewCellEditingStyleDelete) {
+//        // Delete the row from the data source
+//        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+//    }
+//    else if (editingStyle == UITableViewCellEditingStyleInsert) {
+//        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+//    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOr
+//        
+//    }
+//}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     self.selectedPlayer = [self.favoriteProvider.favorites objectAtIndex:indexPath.row];
@@ -112,16 +101,6 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    if([segue.identifier isEqualToString:@"Result"])
-    {
-        FPSearchViewController *controller = segue.destinationViewController;
-        [controller setPLayerList:self.foundPlayers];
-        [controller disableUpdates];
-    }
 }
 
 @end
