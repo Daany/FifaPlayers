@@ -21,29 +21,30 @@
     if(self)
     {
         [self createLabel:CGRectMake(10, 10, 140, 30) andName:@"Fullname"];
-        [self createLabel:CGRectMake(160, 10, 140, 30) andName:self.player.Fullname];
-
+        //[self createLabel:CGRectMake(160, 10, 140, 30) andName:self.player.Fullname];
+        [self createLabel:CGRectMake(100, 10, 200, 30) andName:self.player.Fullname];
+        
         [self createLabel:CGRectMake(10, 50, 140, 30) andName:@"Club"];
-        [self createLabel:CGRectMake(160, 50, 140, 30) andName:self.player.Club];
+        [self createLabel:CGRectMake(100, 50, 200, 30) andName:self.player.Club];
 
         [self createLabel:CGRectMake(10, 90, 140, 30) andName:@"Positions"];
-        [self createLabel:CGRectMake(160, 90, 140, 30) andName:self.player.PositionString];
+        [self createLabel:CGRectMake(100, 90, 200, 30) andName:self.player.PositionString];
 
         [self createLabel:CGRectMake(10, 130, 140, 30) andName:@"Age"];
-        [self createLabel:CGRectMake(160, 130, 140, 30) andName:[NSString stringWithFormat:@"%i", self.player.Age]];
+        [self createLabel:CGRectMake(100, 130, 200, 30) andName:[NSString stringWithFormat:@"%i", self.player.Age]];
 
         [self createLabel:CGRectMake(10, 170, 140, 30) andName:@"Height"];
-        [self createLabel:CGRectMake(160, 170, 140, 30) andName:self.player.Height];
+        [self createLabel:CGRectMake(100, 170, 200, 30) andName:self.player.Height];
 
         [self createLabel:CGRectMake(10, 210, 140, 30) andName:@"Foot"];
-        [self createLabel:CGRectMake(160, 210, 140, 30) andName:self.player.Foot];
+        [self createLabel:CGRectMake(100, 210, 200, 30) andName:self.player.Foot];
 
 
         [self createLabel:CGRectMake(10, 250, 140, 30) andName:@"Overall"];
-        [self createLabel:CGRectMake(160, 250, 30, 30) andInt:self.player.TotalSkill];
+        [self createLabel:CGRectMake(100, 250, 30, 30) andInt:self.player.TotalSkill];
 
         [self createLabel:CGRectMake(10, 290, 140, 30) andName:@"Potential"];
-        [self createLabel:CGRectMake(160, 290, 30, 30) andInt:self.player.Potential];
+        [self createLabel:CGRectMake(100, 290, 30, 30) andInt:self.player.Potential];
     }
 
     return self;
